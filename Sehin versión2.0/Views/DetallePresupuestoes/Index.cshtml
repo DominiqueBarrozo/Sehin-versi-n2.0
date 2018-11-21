@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Sehin_versión2._0.Models.DetallePresupuesto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            Descripción
+        </th>
+        <th>
+            Cantidad
+        </th>
+        <th>
+            Precio unitario
+        </th>
+        <th>
+            Monto
+        </th>
+        <th>
+            Descuento
+        </th>
+        <th>
+            Servicio
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.preciounitario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Monto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.descuento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servicio.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Presupuesto.Fecha)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Borrar", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

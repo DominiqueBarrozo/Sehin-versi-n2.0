@@ -1,0 +1,48 @@
+﻿@model Sehin_versión2._0.Models.Riesgos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2></h2>
+
+<h3>Estás seguro de borrar el riesgo?</h3>
+<div>
+    <h4>Riesgos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Factor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Factor)
+        </dd>
+
+        <dt>
+            Condición de trabajo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CondicionTrabajo)
+        </dd>
+
+        <dt>
+            Tipo de riesgo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoRiesgos.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-success" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

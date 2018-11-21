@@ -1,0 +1,88 @@
+﻿@model Sehin_versión2._0.Models.Establecimientos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Establecimientos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            Cantidad de trabajadores
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantTrabajadores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Superficie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Superficie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ART)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ART)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Domicilio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Domicilio)
+        </dd>
+
+        <dt>
+            Razón social
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clientes.RazonSocial)
+        </dd>
+
+        <dt>
+            Localidad
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidades.Nombre)
+        </dd>
+
+        <dt>
+            Actividad económica
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ActividadesEconomicas.Descripcion)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

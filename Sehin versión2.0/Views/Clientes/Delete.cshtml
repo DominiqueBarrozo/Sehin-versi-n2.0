@@ -1,0 +1,63 @@
+﻿@model Sehin_versión2._0.Models.Clientes
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+
+<h3>¿Estás seguro de borrar el cliente?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Razón social:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RazonSocial)
+        </dd>
+
+        <dt>
+            CUIT: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUIT)
+        </dd>
+
+        <dt>
+           Ing. Brutos:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IngBrutos)
+        </dd>
+
+        <dt>
+            Condición de IVA:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CondicionIva.Descripcion)
+        </dd>
+
+        <dt>
+           Localidad: 
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Localidades.Nombre)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-danger" />    |     
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

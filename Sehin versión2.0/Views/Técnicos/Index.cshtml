@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Sehin_versión2._0.Models.Técnicos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de técnicos</h2>
+
+<p>
+    @Html.ActionLink("Dar de alta técnico", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            Tipo documento
+        </th>
+        <th>
+            Número documento
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Domicilio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            Localidad
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoDoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroDoc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Domicilio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Localidades.Nombre)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.Legajo }) |
+            @Html.ActionLink("Borrar", "Delete", new { id=item.Legajo })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,64 @@
+﻿@model Sehin_versión2._0.Models.PlanesFormacion
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2></h2>
+
+<h3>Estás seguro de borrar el plan de formación?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Plan
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+        <dt>
+            Curso
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cursos.nombre)
+        </dd>
+
+        <dt>
+            Trabajadores
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Trabajadores.Id)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-success" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>

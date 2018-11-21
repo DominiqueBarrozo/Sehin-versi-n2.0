@@ -1,0 +1,32 @@
+﻿@model Sehin_versión2._0.Models.Puestos
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2></h2>
+
+<h3>Estás seguro de borrar el puesto?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Puesto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareasPuestoId)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Borrar" class="btn btn-success" /> |
+            @Html.ActionLink("Volver", "Index")
+        </div>
+    }
+</div>
