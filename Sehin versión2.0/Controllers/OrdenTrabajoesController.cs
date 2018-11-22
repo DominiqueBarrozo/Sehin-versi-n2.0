@@ -17,7 +17,7 @@ namespace Sehin_versión2._0.Controllers
         // GET: OrdenTrabajoes
         public ActionResult Index()
         {
-            var ordenTrabajoSet = db.OrdenTrabajoSet.Include(o => o.Puestos).Include(o => o.Trabajadores).Include(o => o.Máquinas).Include(o => o.Riesgos).Include(o => o.MedidasPreventivas).Include(o => o.Tareas);
+            var ordenTrabajoSet = db.OrdenTrabajoSet.Include(o => o.Puestos).Include(o => o.Trabajadores).Include(o => o.Máquinas).Include(o => o.Riesgos).Include(o => o.MedidasPreventivas);
             return View(ordenTrabajoSet.ToList());
         }
 
@@ -67,7 +67,7 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
+            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 
@@ -88,7 +88,7 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
+            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 
@@ -110,7 +110,7 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
+            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadesEconomicasController.cs" />
     <Compile Include="Controllers\AgendaController.cs" />
+    <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CondicionIvasController.cs" />
     <Compile Include="Controllers\ContactoesController.cs" />
@@ -531,6 +532,7 @@
     <Content Include="Views\Localidades\Details.cshtml" />
     <Content Include="Views\Localidades\Edit.cshtml" />
     <Content Include="Views\Localidades\Index.cshtml" />
+    <Content Include="Views\Calendario\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

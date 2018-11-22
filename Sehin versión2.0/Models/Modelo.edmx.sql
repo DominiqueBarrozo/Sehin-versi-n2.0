@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/13/2018 13:42:31
--- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 11/22/2018 06:40:09
+-- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -319,12 +319,15 @@ GO
 -- Creating table 'OrdenTrabajoSet'
 CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [PuestosId] int  NOT NULL,
-    [TrabajadoresId] int  NOT NULL,
-    [MáquinasId] int  NOT NULL,
-    [RiesgosId] int  NOT NULL,
-    [MedidasPreventivasId] int  NOT NULL,
-    [TareasId] int  NOT NULL
+    [fechainicio] datetime  NOT NULL,
+    [fechafin] datetime  NOT NULL,
+    [estado] nvarchar(max)  NOT NULL,
+    [finalizado] bit  NOT NULL,
+    [PuestosId] int  NULL,
+    [TrabajadoresId] int  NULL,
+    [MáquinasId] int  NULL,
+    [RiesgosId] int  NULL,
+    [MedidasPreventivasId] int  NULL
 );
 GO
 
@@ -762,21 +765,6 @@ GO
 CREATE INDEX [IX_FK_OrdenTrabajoMedidasPreventivas]
 ON [dbo].[OrdenTrabajoSet]
     ([MedidasPreventivasId]);
-GO
-
--- Creating foreign key on [TareasId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_TareasOrdenTrabajo]
-    FOREIGN KEY ([TareasId])
-    REFERENCES [dbo].[TareasSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TareasOrdenTrabajo'
-CREATE INDEX [IX_FK_TareasOrdenTrabajo]
-ON [dbo].[OrdenTrabajoSet]
-    ([TareasId]);
 GO
 
 -- Creating foreign key on [TécnicosLegajo] in table 'AgendaSet'

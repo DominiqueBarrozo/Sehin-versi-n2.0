@@ -86,10 +86,6 @@
       <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
       <End Role="MedidasPreventivas" EntitySet="MedidasPreventivasSet" />
     </AssociationSet>
-    <AssociationSet Name="TareasOrdenTrabajo" Association="Modelo.Store.TareasOrdenTrabajo">
-      <End Role="Tareas" EntitySet="TareasSet" />
-      <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
-    </AssociationSet>
     <AssociationSet Name="AgendaTécnicos" Association="Modelo.Store.AgendaTécnicos">
       <End Role="Agenda" EntitySet="AgendaSet" />
       <End Role="Técnicos" EntitySet="TécnicosSet" />
@@ -279,12 +275,15 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PuestosId" Type="int" Nullable="false" />
-    <Property Name="TrabajadoresId" Type="int" Nullable="false" />
-    <Property Name="MáquinasId" Type="int" Nullable="false" />
-    <Property Name="RiesgosId" Type="int" Nullable="false" />
-    <Property Name="MedidasPreventivasId" Type="int" Nullable="false" />
-    <Property Name="TareasId" Type="int" Nullable="false" />
+    <Property Name="fechainicio" Type="datetime" Nullable="false" />
+    <Property Name="fechafin" Type="datetime" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="finalizado" Type="bit" Nullable="false" />
+    <Property Name="PuestosId" Type="int" Nullable="true" />
+    <Property Name="TrabajadoresId" Type="int" Nullable="true" />
+    <Property Name="MáquinasId" Type="int" Nullable="true" />
+    <Property Name="RiesgosId" Type="int" Nullable="true" />
+    <Property Name="MedidasPreventivasId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="PlanesFormacionSet">
     <Key>
@@ -458,7 +457,7 @@
   </Association>
   <Association Name="OrdenTrabajoPuestos">
     <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <End Role="Puestos" Type="Modelo.Store.PuestosSet" Multiplicity="1" />
+    <End Role="Puestos" Type="Modelo.Store.PuestosSet" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Puestos">
         <PropertyRef Name="Id" />
@@ -470,7 +469,7 @@
   </Association>
   <Association Name="OrdenTrabajoTrabajadores">
     <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <End Role="Trabajadores" Type="Modelo.Store.TrabajadoresSet" Multiplicity="1" />
+    <End Role="Trabajadores" Type="Modelo.Store.TrabajadoresSet" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Trabajadores">
         <PropertyRef Name="Id" />
@@ -482,7 +481,7 @@
   </Association>
   <Association Name="OrdenTrabajoMáquinas">
     <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <End Role="Máquinas" Type="Modelo.Store.MáquinasSet" Multiplicity="1" />
+    <End Role="Máquinas" Type="Modelo.Store.MáquinasSet" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Máquinas">
         <PropertyRef Name="Id" />
@@ -494,7 +493,7 @@
   </Association>
   <Association Name="OrdenTrabajoRiesgos">
     <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <End Role="Riesgos" Type="Modelo.Store.RiesgosSet" Multiplicity="1" />
+    <End Role="Riesgos" Type="Modelo.Store.RiesgosSet" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="Riesgos">
         <PropertyRef Name="Id" />
@@ -518,25 +517,13 @@
   </Association>
   <Association Name="OrdenTrabajoMedidasPreventivas">
     <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <End Role="MedidasPreventivas" Type="Modelo.Store.MedidasPreventivasSet" Multiplicity="1" />
+    <End Role="MedidasPreventivas" Type="Modelo.Store.MedidasPreventivasSet" Multiplicity="0..1" />
     <ReferentialConstraint>
       <Principal Role="MedidasPreventivas">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="OrdenTrabajo">
         <PropertyRef Name="MedidasPreventivasId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TareasOrdenTrabajo">
-    <End Role="Tareas" Type="Modelo.Store.TareasSet" Multiplicity="1" />
-    <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Tareas">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="OrdenTrabajo">
-        <PropertyRef Name="TareasId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -755,10 +742,6 @@
           <AssociationSet Name="OrdenTrabajoMedidasPreventivas" Association="Modelo.OrdenTrabajoMedidasPreventivas">
             <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
             <End Role="MedidasPreventivas" EntitySet="MedidasPreventivasSet" />
-          </AssociationSet>
-          <AssociationSet Name="TareasOrdenTrabajo" Association="Modelo.TareasOrdenTrabajo">
-            <End Role="Tareas" EntitySet="TareasSet" />
-            <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
           </AssociationSet>
           <AssociationSet Name="AgendaTécnicos" Association="Modelo.AgendaTécnicos">
             <End Role="Agenda" EntitySet="AgendaSet" />
@@ -981,19 +964,21 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="fechainicio" Type="DateTime" Nullable="false" />
+          <Property Name="fechafin" Type="DateTime" Nullable="false" />
+          <Property Name="estado" Type="String" Nullable="false" />
+          <Property Name="finalizado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Puestos" Relationship="Modelo.OrdenTrabajoPuestos" FromRole="OrdenTrabajo" ToRole="Puestos" />
-          <Property Name="PuestosId" Type="Int32" Nullable="false" />
+          <Property Name="PuestosId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Trabajadores" Relationship="Modelo.OrdenTrabajoTrabajadores" FromRole="OrdenTrabajo" ToRole="Trabajadores" />
-          <Property Name="TrabajadoresId" Type="Int32" Nullable="false" />
+          <Property Name="TrabajadoresId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Máquinas" Relationship="Modelo.OrdenTrabajoMáquinas" FromRole="OrdenTrabajo" ToRole="Máquinas" />
-          <Property Name="MáquinasId" Type="Int32" Nullable="false" />
+          <Property Name="MáquinasId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Riesgos" Relationship="Modelo.OrdenTrabajoRiesgos" FromRole="OrdenTrabajo" ToRole="Riesgos" />
-          <Property Name="RiesgosId" Type="Int32" Nullable="false" />
+          <Property Name="RiesgosId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="MedidasPreventivas" Relationship="Modelo.OrdenTrabajoMedidasPreventivas" FromRole="OrdenTrabajo" ToRole="MedidasPreventivas" />
-          <Property Name="MedidasPreventivasId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Tareas" Relationship="Modelo.TareasOrdenTrabajo" FromRole="OrdenTrabajo" ToRole="Tareas" />
-          <Property Name="TareasId" Type="Int32" Nullable="false" />
+          <Property Name="MedidasPreventivasId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Agenda" Relationship="Modelo.AgendaOrdenTrabajo" FromRole="OrdenTrabajo" ToRole="Agenda" />
         </EntityType>
         <EntityType Name="PlanesFormacion">
@@ -1071,7 +1056,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <Property Name="Categoria" Type="String" Nullable="false" />
-          <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.TareasOrdenTrabajo" FromRole="Tareas" ToRole="OrdenTrabajo" />
         </EntityType>
         <Association Name="EstablecimientosClientes">
           <End Type="Modelo.Establecimientos" Role="Establecimientos" Multiplicity="*" />
@@ -1171,7 +1155,7 @@
         </Association>
         <Association Name="OrdenTrabajoPuestos">
           <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <End Type="Modelo.Puestos" Role="Puestos" Multiplicity="1" />
+          <End Type="Modelo.Puestos" Role="Puestos" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Puestos">
               <PropertyRef Name="Id" />
@@ -1183,7 +1167,7 @@
         </Association>
         <Association Name="OrdenTrabajoTrabajadores">
           <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <End Type="Modelo.Trabajadores" Role="Trabajadores" Multiplicity="1" />
+          <End Type="Modelo.Trabajadores" Role="Trabajadores" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Trabajadores">
               <PropertyRef Name="Id" />
@@ -1195,7 +1179,7 @@
         </Association>
         <Association Name="OrdenTrabajoMáquinas">
           <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <End Type="Modelo.Máquinas" Role="Máquinas" Multiplicity="1" />
+          <End Type="Modelo.Máquinas" Role="Máquinas" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Máquinas">
               <PropertyRef Name="Id" />
@@ -1207,7 +1191,7 @@
         </Association>
         <Association Name="OrdenTrabajoRiesgos">
           <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <End Type="Modelo.Riesgos" Role="Riesgos" Multiplicity="1" />
+          <End Type="Modelo.Riesgos" Role="Riesgos" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Riesgos">
               <PropertyRef Name="Id" />
@@ -1231,25 +1215,13 @@
         </Association>
         <Association Name="OrdenTrabajoMedidasPreventivas">
           <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <End Type="Modelo.MedidasPreventivas" Role="MedidasPreventivas" Multiplicity="1" />
+          <End Type="Modelo.MedidasPreventivas" Role="MedidasPreventivas" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="MedidasPreventivas">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OrdenTrabajo">
               <PropertyRef Name="MedidasPreventivasId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TareasOrdenTrabajo">
-          <End Type="Modelo.Tareas" Role="Tareas" Multiplicity="1" />
-          <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tareas">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="OrdenTrabajo">
-              <PropertyRef Name="TareasId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1558,12 +1530,15 @@
       <EntityTypeMapping TypeName="IsTypeOf(Modelo.OrdenTrabajo)">
         <MappingFragment StoreEntitySet="OrdenTrabajoSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
+          <ScalarProperty Name="fechafin" ColumnName="fechafin" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="finalizado" ColumnName="finalizado" />
           <ScalarProperty Name="PuestosId" ColumnName="PuestosId" />
           <ScalarProperty Name="TrabajadoresId" ColumnName="TrabajadoresId" />
           <ScalarProperty Name="MáquinasId" ColumnName="MáquinasId" />
           <ScalarProperty Name="RiesgosId" ColumnName="RiesgosId" />
           <ScalarProperty Name="MedidasPreventivasId" ColumnName="MedidasPreventivasId" />
-          <ScalarProperty Name="TareasId" ColumnName="TareasId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1685,7 +1660,7 @@
         <EntityTypeShape EntityType="Modelo.TipoRiesgos" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Accidentes" Width="1.5" PointX="7.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.MedidasPreventivas" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Modelo.OrdenTrabajo" Width="1.5" PointX="3" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Modelo.OrdenTrabajo" Width="1.5" PointX="2" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.PlanesFormacion" Width="1.5" PointX="10" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.DetallePlanesFormacion" Width="1.5" PointX="12.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Cursos" Width="1.5" PointX="10" PointY="16.875" IsExpanded="true" />
@@ -1708,7 +1683,6 @@
         <AssociationConnector Association="Modelo.OrdenTrabajoRiesgos" />
         <AssociationConnector Association="Modelo.RiesgosTipoRiesgos" />
         <AssociationConnector Association="Modelo.OrdenTrabajoMedidasPreventivas" />
-        <AssociationConnector Association="Modelo.TareasOrdenTrabajo" />
         <AssociationConnector Association="Modelo.AgendaTécnicos" />
         <AssociationConnector Association="Modelo.AgendaOrdenTrabajo" />
         <AssociationConnector Association="Modelo.AgendaEstablecimientos" />

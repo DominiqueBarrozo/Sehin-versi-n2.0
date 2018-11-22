@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Nueva orden de trabajo</h2>
+<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4></h4>
+        <h4>OrdenTrabajo</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.PuestosId, "Puesto", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.PuestosId, "PuestosId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("PuestosId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PuestosId, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TrabajadoresId, "Trabajadores", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TrabajadoresId, "TrabajadoresId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("TrabajadoresId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TrabajadoresId, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MáquinasId, "Equipo", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MáquinasId, "MáquinasId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MáquinasId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MáquinasId, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.RiesgosId, "Riesgos", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RiesgosId, "RiesgosId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("RiesgosId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.RiesgosId, "", new { @class = "text-danger" })
@@ -48,18 +48,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MedidasPreventivasId, "Medidas Preventivas", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MedidasPreventivasId, "MedidasPreventivasId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("MedidasPreventivasId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MedidasPreventivasId, "", new { @class = "text-danger" })
             </div>
         </div>
 
-       
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareasId, "TareasId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("TareasId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TareasId, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
         <div class="form-group">
-            <div class="col-md-offset-4 col-md-10">
-                <input type="submit" value="Guardar" class="btn btn-success" />
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>

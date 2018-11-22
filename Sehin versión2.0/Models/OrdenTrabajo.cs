@@ -21,19 +21,21 @@ namespace Sehin_versión2._0.Models
         }
     
         public int Id { get; set; }
-        public int PuestosId { get; set; }
-        public int TrabajadoresId { get; set; }
-        public int MáquinasId { get; set; }
-        public int RiesgosId { get; set; }
-        public int MedidasPreventivasId { get; set; }
-        public int TareasId { get; set; }
+        public System.DateTime fechainicio { get; set; }
+        public System.DateTime fechafin { get; set; }
+        public string estado { get; set; }
+        public bool finalizado { get; set; }
+        public Nullable<int> PuestosId { get; set; }
+        public Nullable<int> TrabajadoresId { get; set; }
+        public Nullable<int> MáquinasId { get; set; }
+        public Nullable<int> RiesgosId { get; set; }
+        public Nullable<int> MedidasPreventivasId { get; set; }
     
         public virtual Puestos Puestos { get; set; }
         public virtual Trabajadores Trabajadores { get; set; }
         public virtual Máquinas Máquinas { get; set; }
         public virtual Riesgos Riesgos { get; set; }
         public virtual MedidasPreventivas MedidasPreventivas { get; set; }
-        public virtual Tareas Tareas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agenda> Agenda { get; set; }
     }
