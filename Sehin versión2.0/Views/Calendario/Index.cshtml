@@ -5,7 +5,7 @@
                 ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Agenda</h2>
 <div id="calender"></div>
 
 <div id="myModal" class="modal fade" role="dialog">
@@ -19,18 +19,18 @@
                 <p id="pDetails"></p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
 </div>
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
 
 @section Scripts{
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src='~/Scripts/moment.min.js'></script>
+    <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
     <script>
         $(document).ready(function () {
             var events = [];
@@ -47,6 +47,7 @@
 
                         });
                     })
+
 
                     GenerateCalender(events);
                 },

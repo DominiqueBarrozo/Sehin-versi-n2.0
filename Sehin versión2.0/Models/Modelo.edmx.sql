@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/22/2018 06:40:09
--- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 11/22/2018 13:55:50
+-- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -58,9 +58,6 @@ IF OBJECT_ID(N'[dbo].[FK_RiesgosTipoRiesgos]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoMedidasPreventivas]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoMedidasPreventivas];
-GO
-IF OBJECT_ID(N'[dbo].[FK_TareasOrdenTrabajo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_TareasOrdenTrabajo];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AgendaTécnicos]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AgendaSet] DROP CONSTRAINT [FK_AgendaTécnicos];
