@@ -1,8 +1,8 @@
 ﻿@model IEnumerable<Sehin_versión2._0.Models.OrdenTrabajo>
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <h2>Agenda</h2>
@@ -29,9 +29,11 @@
 <link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
 
 @section Scripts{
-    <script src='~/Scripts/moment.min.js'></script>
+    <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
+    <script src='~/Scripts/fullcalendar/locale/es.js'></script>
     <script>
+
         $(document).ready(function () {
             var events = [];
             $.ajax({
