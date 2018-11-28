@@ -17,5 +17,8 @@ namespace Sehin_versión2._0.Models
         public int Id { get; set; }
         public string Descripcion { get; set; }
         public string Categoria { get; set; }
+        public string fecha { get; set; }
+        public string periodicidad { get; set; }
+        public string finalizada { get; set; }
     }
 }

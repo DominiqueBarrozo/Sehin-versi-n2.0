@@ -275,8 +275,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="fechainicio" Type="datetime" Nullable="false" />
-    <Property Name="fechafin" Type="datetime" Nullable="false" />
+    <Property Name="fechafin" Type="datetime" Nullable="true" />
     <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
     <Property Name="finalizado" Type="bit" Nullable="false" />
     <Property Name="PuestosId" Type="int" Nullable="true" />
@@ -349,6 +350,9 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Categoria" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="periodicidad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="finalizada" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="ServicioSet">
     <Key>
@@ -965,8 +969,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
           <Property Name="fechainicio" Type="DateTime" Nullable="false" />
-          <Property Name="fechafin" Type="DateTime" Nullable="false" />
+          <Property Name="fechafin" Type="DateTime" Nullable="true" />
           <Property Name="estado" Type="String" Nullable="false" />
           <Property Name="finalizado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Puestos" Relationship="Modelo.OrdenTrabajoPuestos" FromRole="OrdenTrabajo" ToRole="Puestos" />
@@ -1056,6 +1061,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
           <Property Name="Categoria" Type="String" Nullable="false" />
+          <Property Name="fecha" Type="String" Nullable="false" />
+          <Property Name="periodicidad" Type="String" Nullable="false" />
+          <Property Name="finalizada" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="EstablecimientosClientes">
           <End Type="Modelo.Establecimientos" Role="Establecimientos" Multiplicity="*" />
@@ -1530,6 +1538,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Modelo.OrdenTrabajo)">
         <MappingFragment StoreEntitySet="OrdenTrabajoSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
           <ScalarProperty Name="fechafin" ColumnName="fechafin" />
           <ScalarProperty Name="estado" ColumnName="estado" />
@@ -1612,6 +1621,9 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
           <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="periodicidad" ColumnName="periodicidad" />
+          <ScalarProperty Name="finalizada" ColumnName="finalizada" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1668,7 +1680,7 @@
         <EntityTypeShape EntityType="Modelo.Provincias" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Localidades" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.ActividadesEconomicas" Width="1.5" PointX="2.625" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Modelo.Tareas" Width="1.5" PointX="5.25" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Modelo.Tareas" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
         <AssociationConnector Association="Modelo.EstablecimientosClientes" ManuallyRouted="false" />
         <AssociationConnector Association="Modelo.ClientesCondicionIva" />
         <AssociationConnector Association="Modelo.ClientesLocalidades" />
