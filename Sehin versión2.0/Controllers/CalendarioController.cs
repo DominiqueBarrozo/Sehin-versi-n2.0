@@ -18,7 +18,7 @@ namespace Sehin_versión2._0.Controllers
 
         public JsonResult GetEvents()
         {
-            using (ModeloContainer dc = new ModeloContainer())
+            ModeloContainer dc = new ModeloContainer();
             {
                 var events = dc.OrdenTrabajoSet.ToList();
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

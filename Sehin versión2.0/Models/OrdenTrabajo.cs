@@ -21,8 +21,9 @@ namespace Sehin_versión2._0.Models
         }
     
         public int Id { get; set; }
+        public string descripcion { get; set; }
         public System.DateTime fechainicio { get; set; }
-        public System.DateTime fechafin { get; set; }
+        public Nullable<System.DateTime> fechafin { get; set; }
         public string estado { get; set; }
         public bool finalizado { get; set; }
         public Nullable<int> PuestosId { get; set; }

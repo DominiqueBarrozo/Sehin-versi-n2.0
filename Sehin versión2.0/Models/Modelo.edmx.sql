@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/22/2018 13:55:50
--- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 11/27/2018 22:11:41
+-- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -316,8 +316,9 @@ GO
 -- Creating table 'OrdenTrabajoSet'
 CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [descripcion] nvarchar(max)  NOT NULL,
     [fechainicio] datetime  NOT NULL,
-    [fechafin] datetime  NOT NULL,
+    [fechafin] datetime  NULL,
     [estado] nvarchar(max)  NOT NULL,
     [finalizado] bit  NOT NULL,
     [PuestosId] int  NULL,
@@ -389,7 +390,10 @@ GO
 CREATE TABLE [dbo].[TareasSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL,
-    [Categoria] nvarchar(max)  NOT NULL
+    [Categoria] nvarchar(max)  NOT NULL,
+    [fecha] nvarchar(max)  NOT NULL,
+    [periodicidad] nvarchar(max)  NOT NULL,
+    [finalizada] nvarchar(max)  NOT NULL
 );
 GO
 

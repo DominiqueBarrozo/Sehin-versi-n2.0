@@ -44,7 +44,6 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion");
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor");
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id");
-            ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion");
             return View();
         }
 
@@ -53,7 +52,7 @@ namespace Sehin_versión2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PuestosId,TrabajadoresId,MáquinasId,RiesgosId,MedidasPreventivasId,TareasId")] OrdenTrabajo ordenTrabajo)
+        public ActionResult Create([Bind(Include = "Id,descripcion,fechainicio,fechafin,estado,finalizado,PuestosId,TrabajadoresId,MáquinasId,RiesgosId,MedidasPreventivasId")] OrdenTrabajo ordenTrabajo)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +66,6 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 
@@ -88,7 +86,6 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 
@@ -97,7 +94,7 @@ namespace Sehin_versión2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PuestosId,TrabajadoresId,MáquinasId,RiesgosId,MedidasPreventivasId,TareasId")] OrdenTrabajo ordenTrabajo)
+        public ActionResult Edit([Bind(Include = "Id,descripcion,fechainicio,fechafin,estado,finalizado,PuestosId,TrabajadoresId,MáquinasId,RiesgosId,MedidasPreventivasId")] OrdenTrabajo ordenTrabajo)
         {
             if (ModelState.IsValid)
             {
@@ -110,7 +107,6 @@ namespace Sehin_versión2._0.Controllers
             ViewBag.MáquinasId = new SelectList(db.MáquinasSet, "Id", "Descripcion", ordenTrabajo.MáquinasId);
             ViewBag.RiesgosId = new SelectList(db.RiesgosSet, "Id", "Factor", ordenTrabajo.RiesgosId);
             ViewBag.MedidasPreventivasId = new SelectList(db.MedidasPreventivasSet, "Id", "Id", ordenTrabajo.MedidasPreventivasId);
-            //ViewBag.TareasId = new SelectList(db.TareasSet, "Id", "Descripcion", ordenTrabajo.TareasId);
             return View(ordenTrabajo);
         }
 
