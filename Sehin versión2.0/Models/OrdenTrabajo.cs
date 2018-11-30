@@ -11,7 +11,8 @@ namespace Sehin_versión2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class OrdenTrabajo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,8 @@ namespace Sehin_versión2._0.Models
     
         public int Id { get; set; }
         public string descripcion { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/mm/aaaa}", ApplyFormatInEditMode = true)]
         public System.DateTime fechainicio { get; set; }
         public Nullable<System.DateTime> fechafin { get; set; }
         public string estado { get; set; }

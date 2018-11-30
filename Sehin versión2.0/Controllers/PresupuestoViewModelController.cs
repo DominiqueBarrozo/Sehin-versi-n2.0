@@ -76,9 +76,9 @@ namespace Sehin_versión2._0.Controllers
             var presupuesto = new Presupuesto
             {
                 ClientesId = clienteId,
-                Fecha = DateTime.Now,
+                Fecha = DateTime.Parse(Request["fecha"]),
                 numero = (1 + ultpresupuestonumero),
-                fechavencimiento = DateTime.Now.AddDays(15)
+                fechavencimiento = DateTime.Parse(Request["fechaVencimiento"])
 
             };
             db.PresupuestoSet.Add(presupuesto);
@@ -159,9 +159,10 @@ namespace Sehin_versión2._0.Controllers
                 {
                     activo = product.activo,
                     nombre = product.nombre,
-                    precio = product.precio,
+                    precio = double.Parse(Request["preciounitario"]),
                     Id = product.Id,
-                    cantidad = int.Parse(Request["Cantidad"])
+                    cantidad = int.Parse(Request["Cantidad"]),
+                    descuento = double.Parse(Request["descuento"])
                 };
                 presupuestoView.Servicios.Add(presupuestoServicio);
             }
