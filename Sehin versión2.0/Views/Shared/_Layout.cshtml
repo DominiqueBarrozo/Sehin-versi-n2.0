@@ -4,74 +4,76 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black">
-        <div class="container">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black;color:lightgrey;">
+        <div class="container"style="color:lightgrey">
             ..
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse"style="color:lightgrey">
                 <div style="font-size: 2rem;">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:blueviolet" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-home fa-fw fa-4x"></i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                            </ul>
-                        </li>
+                    <ul class="nav navbar-nav"style="color:lightgrey">
+                        
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:blueviolet" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-home fa-fw fa-4x"></i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                      <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
+                                </ul>
+                               
+                            </li>
 
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:limegreen" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-user-cog fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Nuevo Cliente", "Create", "Clientes")</li>
-                                <li>@Html.ActionLink("Nuevo Establecimiento", "Create", "Establecimientos")</li>
-                                <li>@Html.ActionLink("Listado de clientes", "Index", "Clientes")</li>
-                                <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink("Condiciones de IVA", "Index", "CondicionIvas")</li>
-                                <li>@Html.ActionLink("Provincias", "Index", "Provincias")</li>
-                                <li>@Html.ActionLink("Localidades", "Index", "Localidades")</li>
-                                <li>@Html.ActionLink("Servicios", "Index", "Servicios")</li>
-                                <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink("Presupuestos", "NuevoPresupuesto", "PresupuestoViewModel")</li>
-                                <li>@Html.ActionLink("Planilla de Presupuestos", "Index", "Presupuestoes")</li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:orange" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-id-card fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
-                                <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
-                                <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
-                                <li>@Html.ActionLink("Listado de técnicos", "Index", "Técnicos")</li>
-                            </ul>
-                        </li>
-                        <li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:dodgerblue" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="far fa-calendar-alt fa-fw fa-4x"></i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Agenda", "Index", "Calendario")</li>
-                            </ul>
-                        </li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:limegreen" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-user-cog fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black;color:lightgrey">
+                                    <li>@Html.ActionLink("Nuevo Cliente", "Create", "Clientes")</li>
+                                    <li>@Html.ActionLink("Nuevo Establecimiento", "Create", "Establecimientos")</li>
+                                    <li>@Html.ActionLink("Listado de clientes", "Index", "Clientes")</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink("Condiciones de IVA", "Index", "CondicionIvas")</li>
+                                    <li>@Html.ActionLink("Provincias", "Index", "Provincias")</li>
+                                    <li>@Html.ActionLink("Localidades", "Index", "Localidades")</li>
+                                    <li>@Html.ActionLink("Servicios", "Index", "Servicios")</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink("Presupuestos", "NuevoPresupuesto", "PresupuestoViewModel")</li>
+                                    <li>@Html.ActionLink("Planilla de Presupuestos", "Index", "Presupuestoes")</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:orange" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-id-card fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
+                                    <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
+                                    <li>@Html.ActionLink("Listado de técnicos", "Index", "Técnicos")</li>
+                                </ul>
+                            </li>
+                            <li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:dodgerblue" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="far fa-calendar-alt fa-fw fa-4x"></i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Agenda", "Index", "Calendario")</li>
+                                </ul>
+                            </li>
 
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:lightpink" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-clipboard-list fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button> <ul class="dropdown-menu">
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:lightpink" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-clipboard-list fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button> <ul class="dropdown-menu"style="background-color:black; color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo puesto de trabajo", "Create", "Puestos")</li>
                                     <li>@Html.ActionLink("Nueva tarea", "Create", "OrdenTrabajoes")</li>
                                     <li>@Html.ActionLink("Nuevo equipo", "Create", "Máquinas")</li>
@@ -83,53 +85,53 @@
                                     <li role="separator" class="divider"></li>
                                     <li>@Html.ActionLink("Generar informes de gestión", "Index", "Puestos")</li>
                                 </ul>
-</li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:darkseagreen" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-people-carry fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Trabajadores", "Create", "Trabajadores")</li>
-                                <li>@Html.ActionLink("Listado de Trabajadores", "Index", "Trabajadores")</li>
-                                <li>@Html.ActionLink("Asignar EPP", "Create", "Trabajadores")</li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:sandybrown" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-chalkboard-teacher fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Nuevo Plan de formación", "Create", "PlanesFormacions")</li>
-                                <li>@Html.ActionLink("Registrar capacitación", "Create", "DetallePlanesFormacions")</li>
-                                <li>@Html.ActionLink("Ver listado de capacitaciones", "Index", "Cursos")</li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:red" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-diagnoses fa-fw fa-4x"></i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Registrar accidente", "Create", "Accidentes")</li>
-                                <li>@Html.ActionLink("Listado de accidentes", "Index", "Accidentes")</li>
-                                <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink("Generar informes de accidentes", "Index", "Accidentes")</li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" style="background-color:yellow" type="button" id="menu1" data-toggle="dropdown">
-                                <i class="fas fa-exclamation-triangle fa-fw fa-4x"> </i>
-                                <span class="caret"></span>
-                            </button><ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Nuevo riesgo", "Create", "Riesgos")</li>
-                                <li>@Html.ActionLink("Nuevo tipo de riesgo", "Create", "TipoRiesgos")</li>
-                                <li role="separator" class="divider"></li>
-                                <li>@Html.ActionLink("Listado de riesgos", "Index", "Riesgos")</li>
-                                <li role="separator" class="divider"></li>
-                            </ul>
-                        </li>
+                            </li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:darkseagreen" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-people-carry fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Trabajadores", "Create", "Trabajadores")</li>
+                                    <li>@Html.ActionLink("Listado de Trabajadores", "Index", "Trabajadores")</li>
+                                    <li>@Html.ActionLink("Asignar EPP", "Create", "Trabajadores")</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:sandybrown" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-chalkboard-teacher fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Nuevo Plan de formación", "Create", "PlanesFormacions")</li>
+                                    <li>@Html.ActionLink("Registrar capacitación", "Create", "DetallePlanesFormacions")</li>
+                                    <li>@Html.ActionLink("Ver listado de capacitaciones", "Index", "Cursos")</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:red" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-diagnoses fa-fw fa-4x"></i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Registrar accidente", "Create", "Accidentes")</li>
+                                    <li>@Html.ActionLink("Listado de accidentes", "Index", "Accidentes")</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink("Generar informes de accidentes", "Index", "Accidentes")</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:yellow" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-exclamation-triangle fa-fw fa-4x"> </i>
+                                    <span class="caret"style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                    <li>@Html.ActionLink("Nuevo riesgo", "Create", "Riesgos")</li>
+                                    <li>@Html.ActionLink("Nuevo tipo de riesgo", "Create", "TipoRiesgos")</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>@Html.ActionLink("Listado de riesgos", "Index", "Riesgos")</li>
+                                    <li role="separator" class="divider"></li>
+                                </ul>
+                            </li>
 
                     </ul>
                     
@@ -138,6 +140,15 @@
         </div>
     </div>
     <div class="container body-content">
+
+        <style>
+            body {
+                background-color: black;
+                color: lightgrey;
+               
+                  
+            }
+        </style>
         @RenderBody()
         <hr />
         <footer>
