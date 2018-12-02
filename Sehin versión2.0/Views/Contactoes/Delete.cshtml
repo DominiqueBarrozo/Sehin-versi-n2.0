@@ -4,7 +4,7 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<br><br><br>
 
 <h3>Está seguro de borrar el contacto?</h3>
 <div>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-           Tipo documento
+            Tipo documento
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-           Número documento
+            Número documento
         </dt>
 
         <dd>
@@ -68,7 +68,7 @@
         </dd>
 
         <dt>
-           Localidad
+            Localidad
         </dt>
 
         <dd>
@@ -77,7 +77,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

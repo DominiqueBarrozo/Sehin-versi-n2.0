@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<br><br><br>
 <h2>Nuevo establecimiento</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
         <hr />
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CantTrabajadores,"Cantidad de trabajadores", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CantTrabajadores, "Cantidad de trabajadores", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CantTrabajadores, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CantTrabajadores, "", new { @class = "text-danger" })

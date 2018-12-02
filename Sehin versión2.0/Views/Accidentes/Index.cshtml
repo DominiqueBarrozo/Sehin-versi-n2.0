@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br><br><br>
 <h2>Listado de accidentes</h2>
 
 <p>
@@ -26,29 +26,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fecha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Consecuencia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Puestos.Id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Trabajadores.Id)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Consecuencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Puestos.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trabajadores.Id)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 
 </table>
 
 <p>
-    @Html.ActionLink("Exportar a PDF","ImprimirTodo")
+    @Html.ActionLink("Exportar a PDF", "ImprimirTodo")
 </p>

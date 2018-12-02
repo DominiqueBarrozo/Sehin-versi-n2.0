@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<br><br><br>
 <h2>Listado de técnicos</h2>
 
 <p>
@@ -35,34 +35,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoDoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumeroDoc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Domicilio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefono)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Localidades.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Legajo }) |
-            @Html.ActionLink("Borrar", "Delete", new { id=item.Legajo })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroDoc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Domicilio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Localidades.Nombre)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.Legajo }) |
+                @Html.ActionLink("Borrar", "Delete", new { id = item.Legajo })
+            </td>
+        </tr>
+    }
 
 </table>

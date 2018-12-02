@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+<br><br><br>
 <h2>Delete</h2>
 
 <h3>Estás seguro de borrar el accidente?</h3>
@@ -20,7 +20,7 @@
         </dd>
 
         <dt>
-           Consecuencia
+            Consecuencia
         </dt>
 
         <dd>
@@ -28,7 +28,7 @@
         </dd>
 
         <dt>
-           Código de puesto
+            Código de puesto
         </dt>
 
         <dd>
@@ -45,7 +45,8 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">

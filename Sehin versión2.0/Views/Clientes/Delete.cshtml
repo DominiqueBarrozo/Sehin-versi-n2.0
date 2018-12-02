@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "Delete";
 }
-
+<br><br><br>
 
 <h3>¿Estás seguro de borrar el cliente?</h3>
 <div>
@@ -11,7 +11,7 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-           Razón social:
+            Razón social:
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            CUIT: 
+            CUIT:
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-           Ing. Brutos:
+            Ing. Brutos:
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-           Localidad: 
+            Localidad:
         </dt>
 
         <dd>
@@ -52,11 +52,12 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Borrar" class="btn btn-danger" />    |     
+            <input type="submit" value="Borrar" class="btn btn-danger" />    |
             @Html.ActionLink("Volver", "Index")
         </div>
     }

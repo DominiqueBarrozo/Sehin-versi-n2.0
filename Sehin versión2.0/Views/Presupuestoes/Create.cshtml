@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "Create";
 }
-
+<br><br><br>
 <h2>Nuevo presupuesto</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4></h4>
         <hr />
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.numero,"Número de presupuesto", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.numero, "Número de presupuesto", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.numero, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.numero, "", new { @class = "text-danger" })
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.fechavencimiento, "Fecha de vencimiento",htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.fechavencimiento, "Fecha de vencimiento", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.fechavencimiento, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.fechavencimiento, "", new { @class = "text-danger" })
