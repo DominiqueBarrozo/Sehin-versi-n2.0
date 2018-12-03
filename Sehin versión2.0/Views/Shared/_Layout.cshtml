@@ -13,26 +13,26 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black;color:lightgrey;">
         <div class="container"style="color:lightgrey">
-            ..
+          
             <div class="navbar-collapse collapse"style="color:lightgrey">
                 <div style="font-size: 2rem;">
                     <ul class="nav navbar-nav"style="color:lightgrey">
                         
                             <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:blueviolet" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-home fa-fw fa-4x"></i>
+                                <button class="btn btn-default dropdown-toggle" style="background-color:blueviolet" type="button" id="menu1" data-toggle="dropdown" >
+                                    <i class="fas fa-home fa-fw fa-4x" title="Inicio">  </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:darkviolet; color:white">
                                       <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
                                 </ul>
                                
                             </li>
 
                             <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:limegreen" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-user-cog fa-fw fa-4x"> </i>
+                                <button class="btn btn-default dropdown-toggle" style="background-color:lime" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-user-cog fa-fw fa-4x"title="Clientes"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black;color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:limegreen;color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo Cliente", "Create", "Clientes")</li>
                                     <li>@Html.ActionLink("Nuevo Establecimiento", "Create", "Establecimientos")</li>
                                     <li>@Html.ActionLink("Listado de clientes", "Index", "Clientes")</li>
@@ -49,9 +49,9 @@
                             </li>
                             <li class="dropdown"style="color:lightgrey">
                                 <button class="btn btn-default dropdown-toggle" style="background-color:orange" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-id-card fa-fw fa-4x"> </i>
+                                    <i class="fas fa-id-card fa-fw fa-4x"title="Técnicos"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:darkorange; color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
                                     <li role="separator" class="divider"></li>
                                     <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
@@ -62,18 +62,18 @@
                             <li>
                             <li class="dropdown"style="color:lightgrey">
                                 <button class="btn btn-default dropdown-toggle" style="background-color:dodgerblue" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="far fa-calendar-alt fa-fw fa-4x"></i>
+                                    <i class="far fa-calendar-alt fa-fw fa-4x"title="Agenda"></i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:mediumblue; color:lightgrey">
                                     <li>@Html.ActionLink("Agenda", "Index", "Calendario")</li>
                                 </ul>
                             </li>
 
                             <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:lightpink" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-clipboard-list fa-fw fa-4x"> </i>
+                                <button class="btn btn-default dropdown-toggle" style="background-color:hotpink" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-clipboard-list fa-fw fa-4x"title="Gestión"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button> <ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button> <ul class="dropdown-menu"style="background-color:deeppink; color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo puesto de trabajo", "Create", "Puestos")</li>
                                     <li>@Html.ActionLink("Nueva tarea", "Create", "OrdenTrabajoes")</li>
                                     <li>@Html.ActionLink("Nuevo equipo", "Create", "Máquinas")</li>
@@ -87,10 +87,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:darkseagreen" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-people-carry fa-fw fa-4x"> </i>
+                                <button class="btn btn-default dropdown-toggle" style="background-color:skyblue" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-people-carry fa-fw fa-4x"title="Trabajadores"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:cornflowerblue; color:lightgrey">
                                     <li>@Html.ActionLink("Trabajadores", "Create", "Trabajadores")</li>
                                     <li>@Html.ActionLink("Listado de Trabajadores", "Index", "Trabajadores")</li>
                                     <li>@Html.ActionLink("Asignar EPP", "Create", "Trabajadores")</li>
@@ -98,10 +98,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:sandybrown" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-chalkboard-teacher fa-fw fa-4x"> </i>
+                                <button class="btn btn-default dropdown-toggle" style="background-color:yellowgreen" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-chalkboard-teacher fa-fw fa-4x"title="Formación"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:forestgreen; color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo Plan de formación", "Create", "PlanesFormacions")</li>
                                     <li>@Html.ActionLink("Registrar capacitación", "Create", "DetallePlanesFormacions")</li>
                                     <li>@Html.ActionLink("Ver listado de capacitaciones", "Index", "Cursos")</li>
@@ -110,9 +110,9 @@
                             </li>
                             <li class="dropdown"style="color:lightgrey">
                                 <button class="btn btn-default dropdown-toggle" style="background-color:red" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-diagnoses fa-fw fa-4x"></i>
+                                    <i class="fas fa-diagnoses fa-fw fa-4x"title="Accidentes"></i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:indianred; color:lightgrey">
                                     <li>@Html.ActionLink("Registrar accidente", "Create", "Accidentes")</li>
                                     <li>@Html.ActionLink("Listado de accidentes", "Index", "Accidentes")</li>
                                     <li role="separator" class="divider"></li>
@@ -122,9 +122,9 @@
                             </li>
                             <li class="dropdown" style="color:lightgrey">
                                 <button class="btn btn-default dropdown-toggle" style="background-color:yellow" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-exclamation-triangle fa-fw fa-4x"> </i>
+                                    <i class="fas fa-exclamation-triangle fa-fw fa-4x"title="Riesgos"> </i>
                                     <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:black; color:lightgrey">
+                                </button><ul class="dropdown-menu"style="background-color:gold; color:lightgrey">
                                     <li>@Html.ActionLink("Nuevo riesgo", "Create", "Riesgos")</li>
                                     <li>@Html.ActionLink("Nuevo tipo de riesgo", "Create", "TipoRiesgos")</li>
                                     <li role="separator" class="divider"></li>
