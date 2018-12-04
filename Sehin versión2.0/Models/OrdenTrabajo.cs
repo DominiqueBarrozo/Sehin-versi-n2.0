@@ -11,29 +11,36 @@ namespace Sehin_versión2._0.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class OrdenTrabajo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrdenTrabajo()
         {
             this.Agenda = new HashSet<Agenda>();
+            this.Foto = new HashSet<Foto>();
         }
     
         public int Id { get; set; }
         public string descripcion { get; set; }
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/mm/aaaa}", ApplyFormatInEditMode = true)]
+        public string descripciondetallada { get; set; }
         public System.DateTime fechainicio { get; set; }
         public Nullable<System.DateTime> fechafin { get; set; }
         public string estado { get; set; }
         public bool finalizado { get; set; }
+        public string prioridad { get; set; }
+        public Nullable<bool> requierefirma { get; set; }
+        public Nullable<System.DateTime> fechavencimiento { get; set; }
+        public int diasprogramacion { get; set; }
+        public System.DateTime fechafinprogracion { get; set; }
+        public int EstablecimientosId { get; set; }
+        public int ServicioId { get; set; }
         public Nullable<int> PuestosId { get; set; }
         public Nullable<int> TrabajadoresId { get; set; }
         public Nullable<int> MáquinasId { get; set; }
         public Nullable<int> RiesgosId { get; set; }
         public Nullable<int> MedidasPreventivasId { get; set; }
+        public Nullable<int> TécnicosLegajo { get; set; }
     
         public virtual Puestos Puestos { get; set; }
         public virtual Trabajadores Trabajadores { get; set; }
@@ -42,5 +49,10 @@ namespace Sehin_versión2._0.Models
         public virtual MedidasPreventivas MedidasPreventivas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agenda> Agenda { get; set; }
+        public virtual Técnicos Técnicos { get; set; }
+        public virtual Establecimientos Establecimientos { get; set; }
+        public virtual Servicio Servicio { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Foto> Foto { get; set; }
     }
 }

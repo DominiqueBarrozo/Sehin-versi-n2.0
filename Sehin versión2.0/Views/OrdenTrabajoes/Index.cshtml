@@ -9,7 +9,7 @@
     <h2>Listado de órdenes de trabajo</h2>
 
     <p>
-        @Html.ActionLink("Nueva orden de trabajo", "Create")
+        @Html.ActionLink("Crear orden de trabajo", "Create")
     </p>
     <table class="table">
         <tr>
@@ -17,31 +17,58 @@
                 Descripción
             </th>
             <th>
+                Detalle
+            </th>
+            <th>
                 Fecha inicio
             </th>
             <th>
-                Fecha finalizada
+                Fecha fin
             </th>
             <th>
                 Estado
             </th>
             <th>
-                Finalizada
+                Finalizado
             </th>
             <th>
-                Puesto
+                Prioridad
             </th>
             <th>
-                Trabajador
+                Requiere firma
             </th>
             <th>
-                Máquina
+               Fecha de vencimiento
             </th>
             <th>
-                Riesgos
+                Días de programación periodica
+            </th>
+            <th>
+                Fecha fin de programación periodica
+            </th>
+            <th>
+               Puesto
+            </th>
+            <th>
+               Trabajadores
+            </th>
+            <th>
+                Equipo
+            </th>
+            <th>
+               Riesgo
             </th>
             <th>
                 Medidas preventivas
+            </th>
+            <th>
+                Técnico
+            </th>
+            <th>
+                Establecimiento
+            </th>
+            <th>
+                Servicio
             </th>
             <th></th>
         </tr>
@@ -51,6 +78,9 @@
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripciondetallada)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fechainicio)
@@ -63,6 +93,21 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.finalizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prioridad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.requierefirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechavencimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diasprogramacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechafinprogracion)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Puestos.Id)
@@ -78,6 +123,15 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.MedidasPreventivas.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Técnicos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Establecimientos.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Servicio.nombre)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

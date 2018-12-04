@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/27/2018 22:11:41
--- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 12/04/2018 16:14:49
+-- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -317,15 +317,24 @@ GO
 CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
+    [descripciondetallada] nvarchar(max)  NULL,
     [fechainicio] datetime  NOT NULL,
     [fechafin] datetime  NULL,
     [estado] nvarchar(max)  NOT NULL,
     [finalizado] bit  NOT NULL,
+    [prioridad] nvarchar(max)  NOT NULL,
+    [requierefirma] bit  NULL,
+    [fechavencimiento] datetime  NULL,
+    [diasprogramacion] int  NOT NULL,
+    [fechafinprogracion] datetime  NOT NULL,
+    [EstablecimientosId] int  NOT NULL,
+    [ServicioId] int  NOT NULL,
     [PuestosId] int  NULL,
     [TrabajadoresId] int  NULL,
     [MáquinasId] int  NULL,
     [RiesgosId] int  NULL,
-    [MedidasPreventivasId] int  NULL
+    [MedidasPreventivasId] int  NULL,
+    [TécnicosLegajo] int  NULL
 );
 GO
 
@@ -403,6 +412,16 @@ CREATE TABLE [dbo].[ServicioSet] (
     [nombre] nvarchar(max)  NOT NULL,
     [precio] float  NOT NULL,
     [activo] bit  NOT NULL
+);
+GO
+
+-- Creating table 'FotoSet'
+CREATE TABLE [dbo].[FotoSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [ruta] nvarchar(max)  NOT NULL,
+    [descripcion] nvarchar(max)  NOT NULL,
+    [OrdenTrabajo_Id] int  NULL,
+    [Máquinas_Id] int  NULL
 );
 GO
 
@@ -551,6 +570,12 @@ GO
 -- Creating primary key on [Id] in table 'ServicioSet'
 ALTER TABLE [dbo].[ServicioSet]
 ADD CONSTRAINT [PK_ServicioSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'FotoSet'
+ALTER TABLE [dbo].[FotoSet]
+ADD CONSTRAINT [PK_FotoSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -931,6 +956,81 @@ GO
 CREATE INDEX [IX_FK_ClientesContacto]
 ON [dbo].[ContactoSet]
     ([ClientesId]);
+GO
+
+-- Creating foreign key on [TécnicosLegajo] in table 'OrdenTrabajoSet'
+ALTER TABLE [dbo].[OrdenTrabajoSet]
+ADD CONSTRAINT [FK_OrdenTrabajoTécnicos]
+    FOREIGN KEY ([TécnicosLegajo])
+    REFERENCES [dbo].[TécnicosSet]
+        ([Legajo])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoTécnicos'
+CREATE INDEX [IX_FK_OrdenTrabajoTécnicos]
+ON [dbo].[OrdenTrabajoSet]
+    ([TécnicosLegajo]);
+GO
+
+-- Creating foreign key on [EstablecimientosId] in table 'OrdenTrabajoSet'
+ALTER TABLE [dbo].[OrdenTrabajoSet]
+ADD CONSTRAINT [FK_OrdenTrabajoEstablecimientos]
+    FOREIGN KEY ([EstablecimientosId])
+    REFERENCES [dbo].[EstablecimientosSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoEstablecimientos'
+CREATE INDEX [IX_FK_OrdenTrabajoEstablecimientos]
+ON [dbo].[OrdenTrabajoSet]
+    ([EstablecimientosId]);
+GO
+
+-- Creating foreign key on [ServicioId] in table 'OrdenTrabajoSet'
+ALTER TABLE [dbo].[OrdenTrabajoSet]
+ADD CONSTRAINT [FK_OrdenTrabajoServicio]
+    FOREIGN KEY ([ServicioId])
+    REFERENCES [dbo].[ServicioSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoServicio'
+CREATE INDEX [IX_FK_OrdenTrabajoServicio]
+ON [dbo].[OrdenTrabajoSet]
+    ([ServicioId]);
+GO
+
+-- Creating foreign key on [OrdenTrabajo_Id] in table 'FotoSet'
+ALTER TABLE [dbo].[FotoSet]
+ADD CONSTRAINT [FK_FotoOrdenTrabajo]
+    FOREIGN KEY ([OrdenTrabajo_Id])
+    REFERENCES [dbo].[OrdenTrabajoSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FotoOrdenTrabajo'
+CREATE INDEX [IX_FK_FotoOrdenTrabajo]
+ON [dbo].[FotoSet]
+    ([OrdenTrabajo_Id]);
+GO
+
+-- Creating foreign key on [Máquinas_Id] in table 'FotoSet'
+ALTER TABLE [dbo].[FotoSet]
+ADD CONSTRAINT [FK_FotoMáquinas]
+    FOREIGN KEY ([Máquinas_Id])
+    REFERENCES [dbo].[MáquinasSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_FotoMáquinas'
+CREATE INDEX [IX_FK_FotoMáquinas]
+ON [dbo].[FotoSet]
+    ([Máquinas_Id]);
 GO
 
 -- --------------------------------------------------

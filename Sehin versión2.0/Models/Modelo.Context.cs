@@ -49,5 +49,6 @@ namespace Sehin_versión2._0.Models
         public virtual DbSet<ActividadesEconomicas> ActividadesEconomicasSet { get; set; }
         public virtual DbSet<Tareas> TareasSet { get; set; }
         public virtual DbSet<Servicio> ServicioSet { get; set; }
+        public virtual DbSet<Foto> FotoSet { get; set; }
     }
 }

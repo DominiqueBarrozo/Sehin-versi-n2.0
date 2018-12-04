@@ -30,6 +30,7 @@
     <EntitySet Name="ActividadesEconomicasSet" EntityType="Modelo.Store.ActividadesEconomicasSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TareasSet" EntityType="Modelo.Store.TareasSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ServicioSet" EntityType="Modelo.Store.ServicioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FotoSet" EntityType="Modelo.Store.FotoSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EstablecimientosClientes" Association="Modelo.Store.EstablecimientosClientes">
       <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
       <End Role="Clientes" EntitySet="ClientesSet" />
@@ -129,6 +130,26 @@
     <AssociationSet Name="ClientesContacto" Association="Modelo.Store.ClientesContacto">
       <End Role="Clientes" EntitySet="ClientesSet" />
       <End Role="Contacto" EntitySet="ContactoSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrdenTrabajoTécnicos" Association="Modelo.Store.OrdenTrabajoTécnicos">
+      <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+      <End Role="Técnicos" EntitySet="TécnicosSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrdenTrabajoEstablecimientos" Association="Modelo.Store.OrdenTrabajoEstablecimientos">
+      <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+      <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
+    </AssociationSet>
+    <AssociationSet Name="OrdenTrabajoServicio" Association="Modelo.Store.OrdenTrabajoServicio">
+      <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+      <End Role="Servicio" EntitySet="ServicioSet" />
+    </AssociationSet>
+    <AssociationSet Name="FotoOrdenTrabajo" Association="Modelo.Store.FotoOrdenTrabajo">
+      <End Role="Foto" EntitySet="FotoSet" />
+      <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+    </AssociationSet>
+    <AssociationSet Name="FotoMáquinas" Association="Modelo.Store.FotoMáquinas">
+      <End Role="Foto" EntitySet="FotoSet" />
+      <End Role="Máquinas" EntitySet="MáquinasSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ClientesSet">
@@ -276,15 +297,24 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripciondetallada" Type="nvarchar(max)" Nullable="true" />
     <Property Name="fechainicio" Type="datetime" Nullable="false" />
     <Property Name="fechafin" Type="datetime" Nullable="true" />
     <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
     <Property Name="finalizado" Type="bit" Nullable="false" />
+    <Property Name="prioridad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="requierefirma" Type="bit" Nullable="true" />
+    <Property Name="fechavencimiento" Type="datetime" Nullable="true" />
+    <Property Name="diasprogramacion" Type="int" Nullable="false" />
+    <Property Name="fechafinprogracion" Type="datetime" Nullable="false" />
+    <Property Name="EstablecimientosId" Type="int" Nullable="false" />
+    <Property Name="ServicioId" Type="int" Nullable="false" />
     <Property Name="PuestosId" Type="int" Nullable="true" />
     <Property Name="TrabajadoresId" Type="int" Nullable="true" />
     <Property Name="MáquinasId" Type="int" Nullable="true" />
     <Property Name="RiesgosId" Type="int" Nullable="true" />
     <Property Name="MedidasPreventivasId" Type="int" Nullable="true" />
+    <Property Name="TécnicosLegajo" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="PlanesFormacionSet">
     <Key>
@@ -362,6 +392,16 @@
     <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="precio" Type="float" Nullable="false" />
     <Property Name="activo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FotoSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ruta" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OrdenTrabajo_Id" Type="int" Nullable="true" />
+    <Property Name="Máquinas_Id" Type="int" Nullable="true" />
   </EntityType>
   <Association Name="EstablecimientosClientes">
     <End Role="Establecimientos" Type="Modelo.Store.EstablecimientosSet" Multiplicity="*" />
@@ -663,6 +703,66 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="OrdenTrabajoTécnicos">
+    <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
+    <End Role="Técnicos" Type="Modelo.Store.TécnicosSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Técnicos">
+        <PropertyRef Name="Legajo" />
+      </Principal>
+      <Dependent Role="OrdenTrabajo">
+        <PropertyRef Name="TécnicosLegajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdenTrabajoEstablecimientos">
+    <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
+    <End Role="Establecimientos" Type="Modelo.Store.EstablecimientosSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Establecimientos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdenTrabajo">
+        <PropertyRef Name="EstablecimientosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OrdenTrabajoServicio">
+    <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="*" />
+    <End Role="Servicio" Type="Modelo.Store.ServicioSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Servicio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrdenTrabajo">
+        <PropertyRef Name="ServicioId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FotoOrdenTrabajo">
+    <End Role="Foto" Type="Modelo.Store.FotoSet" Multiplicity="*" />
+    <End Role="OrdenTrabajo" Type="Modelo.Store.OrdenTrabajoSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="OrdenTrabajo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foto">
+        <PropertyRef Name="OrdenTrabajo_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FotoMáquinas">
+    <End Role="Foto" Type="Modelo.Store.FotoSet" Multiplicity="*" />
+    <End Role="Máquinas" Type="Modelo.Store.MáquinasSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Máquinas">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foto">
+        <PropertyRef Name="Máquinas_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -792,6 +892,27 @@
             <End Role="Clientes" EntitySet="ClientesSet" />
             <End Role="Contacto" EntitySet="ContactoSet" />
           </AssociationSet>
+          <AssociationSet Name="OrdenTrabajoTécnicos" Association="Modelo.OrdenTrabajoTécnicos">
+            <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+            <End Role="Técnicos" EntitySet="TécnicosSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenTrabajoEstablecimientos" Association="Modelo.OrdenTrabajoEstablecimientos">
+            <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+            <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
+          </AssociationSet>
+          <AssociationSet Name="OrdenTrabajoServicio" Association="Modelo.OrdenTrabajoServicio">
+            <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+            <End Role="Servicio" EntitySet="ServicioSet" />
+          </AssociationSet>
+          <EntitySet Name="FotoSet" EntityType="Modelo.Foto" />
+          <AssociationSet Name="FotoOrdenTrabajo" Association="Modelo.FotoOrdenTrabajo">
+            <End Role="Foto" EntitySet="FotoSet" />
+            <End Role="OrdenTrabajo" EntitySet="OrdenTrabajoSet" />
+          </AssociationSet>
+          <AssociationSet Name="FotoMáquinas" Association="Modelo.FotoMáquinas">
+            <End Role="Foto" EntitySet="FotoSet" />
+            <End Role="Máquinas" EntitySet="MáquinasSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
@@ -826,6 +947,7 @@
           <NavigationProperty Name="ActividadesEconomicas" Relationship="Modelo.EstablecimientosActividadesEconomicas" FromRole="Establecimientos" ToRole="ActividadesEconomicas" />
           <Property Name="ActividadesEconomicasId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Agenda" Relationship="Modelo.AgendaEstablecimientos" FromRole="Establecimientos" ToRole="Agenda" />
+          <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.OrdenTrabajoEstablecimientos" FromRole="Establecimientos" ToRole="OrdenTrabajo" />
         </EntityType>
         <EntityType Name="Contacto">
           <Key>
@@ -885,6 +1007,7 @@
           <NavigationProperty Name="Localidades" Relationship="Modelo.TécnicosLocalidades" FromRole="Técnicos" ToRole="Localidades" />
           <Property Name="LocalidadesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Agenda" Relationship="Modelo.AgendaTécnicos" FromRole="Técnicos" ToRole="Agenda" />
+          <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.OrdenTrabajoTécnicos" FromRole="Técnicos" ToRole="OrdenTrabajo" />
         </EntityType>
         <EntityType Name="Agenda">
           <Key>
@@ -925,6 +1048,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.OrdenTrabajoMáquinas" FromRole="Máquinas" ToRole="OrdenTrabajo" />
           <Property Name="Descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="Foto" Relationship="Modelo.FotoMáquinas" FromRole="Máquinas" ToRole="Foto" />
         </EntityType>
         <EntityType Name="Riesgos">
           <Key>
@@ -970,21 +1094,34 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="descripcion" Type="String" Nullable="false" />
+          <Property Name="descripciondetallada" Type="String" Nullable="true" />
           <Property Name="fechainicio" Type="DateTime" Nullable="false" />
           <Property Name="fechafin" Type="DateTime" Nullable="true" />
           <Property Name="estado" Type="String" Nullable="false" />
           <Property Name="finalizado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Puestos" Relationship="Modelo.OrdenTrabajoPuestos" FromRole="OrdenTrabajo" ToRole="Puestos" />
-          <Property Name="PuestosId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Trabajadores" Relationship="Modelo.OrdenTrabajoTrabajadores" FromRole="OrdenTrabajo" ToRole="Trabajadores" />
-          <Property Name="TrabajadoresId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Máquinas" Relationship="Modelo.OrdenTrabajoMáquinas" FromRole="OrdenTrabajo" ToRole="Máquinas" />
-          <Property Name="MáquinasId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Riesgos" Relationship="Modelo.OrdenTrabajoRiesgos" FromRole="OrdenTrabajo" ToRole="Riesgos" />
-          <Property Name="RiesgosId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="MedidasPreventivas" Relationship="Modelo.OrdenTrabajoMedidasPreventivas" FromRole="OrdenTrabajo" ToRole="MedidasPreventivas" />
-          <Property Name="MedidasPreventivasId" Type="Int32" Nullable="true" />
           <NavigationProperty Name="Agenda" Relationship="Modelo.AgendaOrdenTrabajo" FromRole="OrdenTrabajo" ToRole="Agenda" />
+          <Property Name="prioridad" Type="String" Nullable="false" />
+          <NavigationProperty Name="Técnicos" Relationship="Modelo.OrdenTrabajoTécnicos" FromRole="OrdenTrabajo" ToRole="Técnicos" />
+          <NavigationProperty Name="Establecimientos" Relationship="Modelo.OrdenTrabajoEstablecimientos" FromRole="OrdenTrabajo" ToRole="Establecimientos" />
+          <Property Name="requierefirma" Type="Boolean" Nullable="true" />
+          <Property Name="fechavencimiento" Type="DateTime" Nullable="true" />
+          <Property Name="diasprogramacion" Type="Int32" Nullable="false" />
+          <Property Name="fechafinprogracion" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Servicio" Relationship="Modelo.OrdenTrabajoServicio" FromRole="OrdenTrabajo" ToRole="Servicio" />
+          <Property Name="EstablecimientosId" Type="Int32" Nullable="false" />
+          <Property Name="ServicioId" Type="Int32" Nullable="false" />
+          <Property Name="PuestosId" Type="Int32" Nullable="true" />
+          <Property Name="TrabajadoresId" Type="Int32" Nullable="true" />
+          <Property Name="MáquinasId" Type="Int32" Nullable="true" />
+          <Property Name="RiesgosId" Type="Int32" Nullable="true" />
+          <Property Name="MedidasPreventivasId" Type="Int32" Nullable="true" />
+          <Property Name="TécnicosLegajo" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Foto" Relationship="Modelo.FotoOrdenTrabajo" FromRole="OrdenTrabajo" ToRole="Foto" />
         </EntityType>
         <EntityType Name="PlanesFormacion">
           <Key>
@@ -1338,6 +1475,7 @@
           <Property Name="precio" Type="Double" Nullable="false" />
           <Property Name="activo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="DetallePresupuesto" Relationship="Modelo.DetallePresupuestoServicio" FromRole="Servicio" ToRole="DetallePresupuesto" />
+          <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.OrdenTrabajoServicio" FromRole="Servicio" ToRole="OrdenTrabajo" />
         </EntityType>
         <Association Name="DetallePresupuestoServicio">
           <End Type="Modelo.DetallePresupuesto" Role="DetallePresupuesto" Multiplicity="*" />
@@ -1374,6 +1512,60 @@
               <PropertyRef Name="ClientesId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenTrabajoTécnicos">
+          <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
+          <End Type="Modelo.Técnicos" Role="Técnicos" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Técnicos">
+              <PropertyRef Name="Legajo" />
+            </Principal>
+            <Dependent Role="OrdenTrabajo">
+              <PropertyRef Name="TécnicosLegajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenTrabajoEstablecimientos">
+          <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
+          <End Type="Modelo.Establecimientos" Role="Establecimientos" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Establecimientos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenTrabajo">
+              <PropertyRef Name="EstablecimientosId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="OrdenTrabajoServicio">
+          <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="*" />
+          <End Type="Modelo.Servicio" Role="Servicio" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdenTrabajo">
+              <PropertyRef Name="ServicioId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Foto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ruta" Type="String" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrdenTrabajo" Relationship="Modelo.FotoOrdenTrabajo" FromRole="Foto" ToRole="OrdenTrabajo" />
+          <NavigationProperty Name="Máquinas" Relationship="Modelo.FotoMáquinas" FromRole="Foto" ToRole="Máquinas" />
+        </EntityType>
+        <Association Name="FotoOrdenTrabajo">
+          <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
+          <End Type="Modelo.OrdenTrabajo" Role="OrdenTrabajo" Multiplicity="0..1" />
+        </Association>
+        <Association Name="FotoMáquinas">
+          <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
+          <End Type="Modelo.Máquinas" Role="Máquinas" Multiplicity="0..1" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1539,15 +1731,24 @@
         <MappingFragment StoreEntitySet="OrdenTrabajoSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="descripciondetallada" ColumnName="descripciondetallada" />
           <ScalarProperty Name="fechainicio" ColumnName="fechainicio" />
           <ScalarProperty Name="fechafin" ColumnName="fechafin" />
           <ScalarProperty Name="estado" ColumnName="estado" />
           <ScalarProperty Name="finalizado" ColumnName="finalizado" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="requierefirma" ColumnName="requierefirma" />
+          <ScalarProperty Name="fechavencimiento" ColumnName="fechavencimiento" />
+          <ScalarProperty Name="diasprogramacion" ColumnName="diasprogramacion" />
+          <ScalarProperty Name="fechafinprogracion" ColumnName="fechafinprogracion" />
+          <ScalarProperty Name="EstablecimientosId" ColumnName="EstablecimientosId" />
+          <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
           <ScalarProperty Name="PuestosId" ColumnName="PuestosId" />
           <ScalarProperty Name="TrabajadoresId" ColumnName="TrabajadoresId" />
           <ScalarProperty Name="MáquinasId" ColumnName="MáquinasId" />
           <ScalarProperty Name="RiesgosId" ColumnName="RiesgosId" />
           <ScalarProperty Name="MedidasPreventivasId" ColumnName="MedidasPreventivasId" />
+          <ScalarProperty Name="TécnicosLegajo" ColumnName="TécnicosLegajo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1637,6 +1838,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="FotoSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo.Foto)">
+        <MappingFragment StoreEntitySet="FotoSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ruta" ColumnName="ruta" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FotoOrdenTrabajo" TypeName="Modelo.FotoOrdenTrabajo" StoreEntitySet="FotoSet">
+      <EndProperty Name="OrdenTrabajo">
+        <ScalarProperty Name="Id" ColumnName="OrdenTrabajo_Id" />
+      </EndProperty>
+      <EndProperty Name="Foto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="OrdenTrabajo_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FotoMáquinas" TypeName="Modelo.FotoMáquinas" StoreEntitySet="FotoSet">
+      <EndProperty Name="Máquinas">
+        <ScalarProperty Name="Id" ColumnName="Máquinas_Id" />
+      </EndProperty>
+      <EndProperty Name="Foto">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Máquinas_Id" IsNull="false" />
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
@@ -1680,7 +1908,7 @@
         <EntityTypeShape EntityType="Modelo.Provincias" Width="1.5" PointX="9.75" PointY="7.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Localidades" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.ActividadesEconomicas" Width="1.5" PointX="2.625" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Modelo.Tareas" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Modelo.Tareas" Width="1.5" PointX="5.625" PointY="23.375" IsExpanded="true" />
         <AssociationConnector Association="Modelo.EstablecimientosClientes" ManuallyRouted="false" />
         <AssociationConnector Association="Modelo.ClientesCondicionIva" />
         <AssociationConnector Association="Modelo.ClientesLocalidades" />
@@ -1707,6 +1935,12 @@
         <AssociationConnector Association="Modelo.DetallePresupuestoServicio" />
         <AssociationConnector Association="Modelo.PresupuestoDetallePresupuesto" />
         <AssociationConnector Association="Modelo.ClientesContacto" />
+        <AssociationConnector Association="Modelo.OrdenTrabajoTécnicos" />
+        <AssociationConnector Association="Modelo.OrdenTrabajoEstablecimientos" />
+        <AssociationConnector Association="Modelo.OrdenTrabajoServicio" />
+        <EntityTypeShape EntityType="Modelo.Foto" Width="1.5" PointX="8.125" PointY="21.375" />
+        <AssociationConnector Association="Modelo.FotoOrdenTrabajo" />
+        <AssociationConnector Association="Modelo.FotoMáquinas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -18,6 +18,7 @@ namespace Sehin_versión2._0.Models
         public Técnicos()
         {
             this.Agenda = new HashSet<Agenda>();
+            this.OrdenTrabajo = new HashSet<OrdenTrabajo>();
         }
     
         public int Legajo { get; set; }
@@ -32,5 +33,7 @@ namespace Sehin_versión2._0.Models
         public virtual Localidades Localidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Agenda> Agenda { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdenTrabajo> OrdenTrabajo { get; set; }
     }
 }

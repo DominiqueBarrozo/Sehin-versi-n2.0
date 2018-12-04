@@ -18,6 +18,7 @@ namespace Sehin_versión2._0.Models
         public Servicio()
         {
             this.DetallePresupuesto = new HashSet<DetallePresupuesto>();
+            this.OrdenTrabajo = new HashSet<OrdenTrabajo>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace Sehin_versión2._0.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePresupuesto> DetallePresupuesto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrdenTrabajo> OrdenTrabajo { get; set; }
     }
 }
