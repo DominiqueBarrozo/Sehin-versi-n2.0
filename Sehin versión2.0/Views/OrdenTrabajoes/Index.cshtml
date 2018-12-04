@@ -3,86 +3,89 @@
 @{
     ViewBag.Title = "Index";
 }
-<br><br><br>
-<h2>Listado de órdenes de trabajo</h2>
+<br><br>
+<div class="container" style="background-color:orange;opacity:.9;color: black">
+    <br>
+    <h2>Listado de órdenes de trabajo</h2>
 
-<p>
-    @Html.ActionLink("Nueva orden de trabajo", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Descripción
-        </th>
-        <th>
-            Fecha inicio
-        </th>
-        <th>
-            Fecha finalizada
-        </th>
-        <th>
-            Estado
-        </th>
-        <th>
-            Finalizada
-        </th>
-        <th>
-            Puesto
-        </th>
-        <th>
-            Trabajador
-        </th>
-        <th>
-           Máquina
-        </th>
-        <th>
-            Riesgos
-        </th>
-        <th>
-            Medidas preventivas
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Nueva orden de trabajo", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechainicio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechafin)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.finalizado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puestos.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trabajadores.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Máquinas.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Riesgos.Factor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MedidasPreventivas.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Fecha inicio
+            </th>
+            <th>
+                Fecha finalizada
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Finalizada
+            </th>
+            <th>
+                Puesto
+            </th>
+            <th>
+                Trabajador
+            </th>
+            <th>
+                Máquina
+            </th>
+            <th>
+                Riesgos
+            </th>
+            <th>
+                Medidas preventivas
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechainicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechafin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.finalizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Puestos.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Trabajadores.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Máquinas.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Riesgos.Factor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MedidasPreventivas.Id)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

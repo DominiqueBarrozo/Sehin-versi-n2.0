@@ -3,49 +3,52 @@
 @{
     ViewBag.Title = "Index";
 }
-<br><br><br>
-<h2>Listado de presupuestos</h2>
+<br><br>
+<div class="container" style="background-color:lime;opacity:.8;color: black">
+    <br>
+    <h2>Listado de presupuestos</h2>
 
-<p>
-    @Html.ActionLink("Crear presupuesto", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Fecha)
-        </th>
-        <th>
-            Número de presupuesto
-        </th>
-        <th>
-            Fecha de vencimiento
-        </th>
-        <th>
-            Cliente
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Crear presupuesto", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fechavencimiento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Clientes.RazonSocial)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                Número de presupuesto
+            </th>
+            <th>
+                Fecha de vencimiento
+            </th>
+            <th>
+                Cliente
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechavencimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clientes.RazonSocial)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

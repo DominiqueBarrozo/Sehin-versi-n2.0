@@ -4,36 +4,39 @@
 
     ViewBag.Title = "Index";
 }
-<br><br><br>
+<br><br>
+<div class="container" style="background-color:deepskyblue;opacity:.9;color: black">
+    <br>
 
-<h2>Agenda</h2>
-<div id="calender"></div>
+    <h2>Agenda</h2>
+    <div id="calender"></div>
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"><span id="eventTitle"></span></h4>
-            </div>
-            <div class="modal-body">
-                <p id="pDetails"></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
-<link href="~/Content/fullcalendar.css" rel="stylesheet" />
-<link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Content/fullcalendar.print.css" rel="stylesheet" media="print" />
 
-@section Scripts{
-    <script src="~/Scripts/moment.min.js"></script>
-    <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
-    <script src='~/Scripts/fullcalendar/locale/es.js'></script>
-    <script>
+    @section Scripts{
+        <script src="~/Scripts/moment.min.js"></script>
+        <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
+        <script src='~/Scripts/fullcalendar/locale/es.js'></script>
+        <script>
 
     $(document).ready(function () {
         var events = [];
@@ -85,6 +88,6 @@
             })
         }
     })
-    </script>
+        </script>
 
-}
+    }

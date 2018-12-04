@@ -2,90 +2,93 @@
 @{
     ViewBag.Title = "NuevoPresupuesto";
 }
-<br><br><br>
-<h2>Nuevo Presupuesto</h2>
-<h3>@ViewBag.Error</h3>
-<h3>@ViewBag.Message</h3>
+<br><br>
+<div class="container" style="background-color:lime;opacity:.8;color: black">
+    <br>
+    <h2>Nuevo Presupuesto</h2>
+    <h3>@ViewBag.Error</h3>
+    <h3>@ViewBag.Message</h3>
 
-@using (Html.BeginForm("NuevoPresupuesto", "PresupuestoViewModel", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Cliente</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha,"Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.fechaVencimiento, "Fecha de vencimiento", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaVencimiento, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cliente.Id, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Cliente.Id, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        @Html.ActionLink("Agregar Servicio", "AgregarServicio", new { }, new { @class = "btn btn-primary" })
-        <input type="submit" value="Guardar Presupuesto" class="btn btn-success" />
-
-    </div>
-
-}
-<h2>Detalle de Presupuesto</h2>
-<table class="table">
-    <tr>
-        <th>
-            Servicio
-        </th>
-        <th>
-            Precio unitario
-        </th>
-        <th>
-            Cantidad
-        </th>
-        <th>
-            Total
-        </th>
-        <th></th>
-    </tr>
-
-    @if (Model.Servicios != null)
+    @using (Html.BeginForm("NuevoPresupuesto", "PresupuestoViewModel", FormMethod.Post))
     {
-        for (int i = 0; i < Model.Servicios.Count; i++)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Servicios[i].nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Servicios[i].precio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Servicios[i].cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => Model.Servicios[i].preciototal)
-                </td>
-                <td>
-                    @Html.ActionLink("Editar", "Edit", new { id = Model.Servicios[i].Id }) |
-                    @Html.ActionLink("Borrar", "Delete", new { id = Model.Servicios[i].Id })
-                </td>
-            </tr>
-        }
+        @Html.AntiForgeryToken()
 
+        <div class="form-horizontal">
+            <h4>Cliente</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecha, "Fecha", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fechaVencimiento, "Fecha de vencimiento", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.fechaVencimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fechaVencimiento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Cliente.Id, "Cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Id", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Cliente.Id, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @Html.ActionLink("Agregar Servicio", "AgregarServicio", new { }, new { @class = "btn btn-primary" })
+            <input type="submit" value="Guardar Presupuesto" class="btn btn-success" />
+
+        </div>
 
     }
-</table>
+    <h2>Detalle de Presupuesto</h2>
+    <table class="table">
+        <tr>
+            <th>
+                Servicio
+            </th>
+            <th>
+                Precio unitario
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Total
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model.Servicios != null)
+        {
+            for (int i = 0; i < Model.Servicios.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Servicios[i].nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Servicios[i].precio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Servicios[i].cantidad)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.Servicios[i].preciototal)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = Model.Servicios[i].Id }) |
+                        @Html.ActionLink("Borrar", "Delete", new { id = Model.Servicios[i].Id })
+                    </td>
+                </tr>
+            }
+
+
+        }
+    </table>
+    </div>

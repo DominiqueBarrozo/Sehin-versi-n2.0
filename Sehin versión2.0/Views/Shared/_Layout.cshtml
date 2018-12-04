@@ -10,29 +10,34 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:black" >
-        <div class="container"style="color:lightgrey;background-color:black">
+<body >
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:transparent;border-color:transparent;" >
+        <div class="container"style="color:white;background-color:transparent;">
           
             <div class="navbar-collapse collapse">
                 <div style="font-size: 2rem;">
-                    <ul class="nav navbar-nav"style="background-color:transparent; color:lightgrey">
-                        
-                            <li class="dropdown"style="color:lightgrey; background-color: transparent">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:blueviolet" type="button" id="menu1" data-toggle="dropdown" >
+                    <center>
+                        <ul class="nav navbar-nav" 
+                            style="background-color:transparent; margin-right:2px;color:white;border-color:transparent;float: left;
+                                    list-style-type: none;
+                                    padding: 0; 
+                                    position: relative; 
+                                    left: 8%;">
+                            <li class="dropdown" style="color:lightgrey;border-color:transparent;">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:violet;opacity:.9" type="button" id="menu1" data-toggle="dropdown">
                                     <i class="fas fa-home fa-fw fa-4x" title="Inicio">  </i>
                                     <span class="caret"></span>
-                                </button><ul class="dropdown-menu"style="background-color:darkviolet; color:white">
-                                      <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
+                                </button><ul class="dropdown-menu" style="background-color:violet;opacity:.9;font-size:18px">
+                                    <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
                                 </ul>
-                               
+
                             </li>
 
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:lime" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-user-cog fa-fw fa-4x"title="Clientes"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:limegreen;color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:lime;opacity:.9 " type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-user-cog fa-fw fa-4x" title="Clientes"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:lime;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Nuevo Cliente", "Create", "Clientes")</li>
                                     <li>@Html.ActionLink("Nuevo Establecimiento", "Create", "Establecimientos")</li>
                                     <li>@Html.ActionLink("Listado de clientes", "Index", "Clientes")</li>
@@ -47,11 +52,11 @@
                                     <li role="separator" class="divider"></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:orange" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-id-card fa-fw fa-4x"title="Técnicos"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:darkorange; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:orange;opacity:.9" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-id-card fa-fw fa-4x" title="Técnicos"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:orange;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
                                     <li role="separator" class="divider"></li>
                                     <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
@@ -60,59 +65,59 @@
                                 </ul>
                             </li>
                             <li>
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:dodgerblue" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="far fa-calendar-alt fa-fw fa-4x"title="Agenda"></i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:mediumblue; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:deepskyblue;opacity:.9" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="far fa-calendar-alt fa-fw fa-4x" title="Agenda"></i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:deepskyblue;opacity:.9;font-size:18px" ">
                                     <li>@Html.ActionLink("Agenda", "Index", "Calendario")</li>
                                 </ul>
                             </li>
 
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:hotpink" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-clipboard-list fa-fw fa-4x"title="Gestión"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button> <ul class="dropdown-menu"style="background-color:deeppink; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:hotpink;opacity:.9 " type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-clipboard-list fa-fw fa-4x" title="Gestión"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button> <ul class="dropdown-menu" style="background-color:hotpink;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Nuevo puesto de trabajo", "Create", "Puestos")</li>
-                                    <li>@Html.ActionLink("Nueva tarea", "Create", "OrdenTrabajoes")</li>
+                                    <li>@Html.ActionLink("Nueva tarea", "Create", "Tareas")</li>
                                     <li>@Html.ActionLink("Nuevo equipo", "Create", "Máquinas")</li>
                                     <li>@Html.ActionLink("Nueva medida preventiva", "Create", "MedidasPreventivas")</li>
                                     <li role="separator" class="divider"></li>
-                                    <li>@Html.ActionLink("Asignar trabajadores al puesto", "Create", "OrdenTrabajoes")</li>
-                                    <li>@Html.ActionLink("Asignar lugares al puesto", "Create", "OrdenTrabajoes")</li>
-                                    <li>@Html.ActionLink("Asignar tareas y equipos al puesto", "Create", "OrdenTrabajoes")</li>
+                                    <li>@Html.ActionLink("Asignar trabajadores al puesto", "Create", "Tareas")</li>
+                                    <li>@Html.ActionLink("Asignar lugares al puesto", "Create", "Tareas")</li>
+                                    <li>@Html.ActionLink("Asignar tareas y equipos al puesto", "Create", "Tareas")</li>
                                     <li role="separator" class="divider"></li>
                                     <li>@Html.ActionLink("Generar informes de gestión", "Index", "Puestos")</li>
                                 </ul>
                             </li>
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:skyblue" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-people-carry fa-fw fa-4x"title="Trabajadores"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:cornflowerblue; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:skyblue; opacity:.9" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-people-carry fa-fw fa-4x" title="Trabajadores"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:skyblue;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Trabajadores", "Create", "Trabajadores")</li>
                                     <li>@Html.ActionLink("Listado de Trabajadores", "Index", "Trabajadores")</li>
                                     <li>@Html.ActionLink("Asignar EPP", "Create", "Trabajadores")</li>
                                     <li role="separator" class="divider"></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:yellowgreen" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-chalkboard-teacher fa-fw fa-4x"title="Formación"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:forestgreen; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:mediumspringgreen;opacity:.9" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-chalkboard-teacher fa-fw fa-4x" title="Formación"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:mediumspringgreen;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Nuevo Plan de formación", "Create", "PlanesFormacions")</li>
                                     <li>@Html.ActionLink("Registrar capacitación", "Create", "DetallePlanesFormacions")</li>
                                     <li>@Html.ActionLink("Ver listado de capacitaciones", "Index", "Cursos")</li>
                                     <li role="separator" class="divider"></li>
                                 </ul>
                             </li>
-                            <li class="dropdown"style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:red" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-diagnoses fa-fw fa-4x"title="Accidentes"></i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:indianred; color:lightgrey">
+                            <li class="dropdown" style="color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:red; opacity:.9" type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-diagnoses fa-fw fa-4x" title="Accidentes"></i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:red;opacity:.9;font-size:18px">
                                     <li>@Html.ActionLink("Registrar accidente", "Create", "Accidentes")</li>
                                     <li>@Html.ActionLink("Listado de accidentes", "Index", "Accidentes")</li>
                                     <li role="separator" class="divider"></li>
@@ -121,10 +126,10 @@
                                 </ul>
                             </li>
                             <li class="dropdown" style="color:lightgrey">
-                                <button class="btn btn-default dropdown-toggle" style="background-color:yellow" type="button" id="menu1" data-toggle="dropdown">
-                                    <i class="fas fa-exclamation-triangle fa-fw fa-4x"title="Riesgos"> </i>
-                                    <span class="caret"style="color:lightgrey"></span>
-                                </button><ul class="dropdown-menu"style="background-color:gold; color:lightgrey">
+                                <button class="btn btn-default dropdown-toggle" style="background-color:gold;opacity:.9 " type="button" id="menu1" data-toggle="dropdown">
+                                    <i class="fas fa-exclamation-triangle fa-fw fa-4x" title="Riesgos"> </i>
+                                    <span class="caret" style="color:lightgrey"></span>
+                                </button><ul class="dropdown-menu" style="background-color:gold;opacity:.9;font-size:18px" ">
                                     <li>@Html.ActionLink("Nuevo riesgo", "Create", "Riesgos")</li>
                                     <li>@Html.ActionLink("Nuevo tipo de riesgo", "Create", "TipoRiesgos")</li>
                                     <li role="separator" class="divider"></li>
@@ -132,10 +137,10 @@
                                     <li role="separator" class="divider"></li>
                                 </ul>
                             </li>
-                       
 
-                    </ul>
-                    
+
+                        </ul>
+                    </center>
                 </div>
             </div>
         </div>
@@ -144,10 +149,10 @@
 
         <style>
             body {
-                background-color: black;
-                color: lightgrey;
-               
-                  
+                background-image: url('/Imagenes/Banner_Sitio_Seguridad-e-Higiene-Industrial-y-Salud-Ocupacional.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: black;
             }
         </style>
         @RenderBody()

@@ -3,31 +3,35 @@
 @{
     ViewBag.Title = "Index";
 }
-<br><br><br>
-<h2>Listado de cursos</h2>
+<br><br>
+<div class="container" style="background-color:mediumspringgreen;opacity:.9;color: black">
+    <br>
 
-<p>
-    @Html.ActionLink("Crear curso", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Nombre curso
-        </th>
-        <th></th>
-    </tr>
+    <h2>Listado de cursos</h2>
 
-    @foreach (var item in Model)
-    {
+    <p>
+        @Html.ActionLink("Crear curso", "Create")
+    </p>
+    <table class="table">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                Nombre curso
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
