@@ -22,7 +22,7 @@
                     <p id="pDetails"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -34,60 +34,53 @@
 
     @section Scripts{
         <script src="~/Scripts/moment.min.js"></script>
-        <script src="~/Scripts/fullcalendar/fullcalendar.js"></script>
+        <script src="~/Scripts/fullcalendar/fullcalendar.min.js"></script>
         <script src='~/Scripts/fullcalendar/locale/es.js'></script>
-        <script>
+        <script src ='~/Scripts/jquery-3.3.1.min.js'></script>
+		<script>
+			$(document).ready(function () {
+				var events = [];
+				$.ajax({
+					type: "GET",
+					url: "/Calendario/GetEvents",
+					success: function (data) {
+						$.each(data, function (i, v) {
+						events.push({
+							title: v.descripcion,
+							description: v.descripcion,
+							start: moment(v.fechainicio),
+							end: v.fechafin != null ? moment(v.fechafin) : null
+							});
+						})
+						GenerateCalender(events);
+					},
+					error: function (error) {
+						alert('Error al obtener Ordenes de Trabajo o Tareas');
+					}
+				})
 
-    $(document).ready(function () {
-        var events = [];
-        $.ajax({
-            type: "GET",
-            url: "/Calendario/GetEvents",
-            success: function (data) {
-                $.each(data, function (i, v) {
-                events.push({
-                    title: v.descripcion,
-                    description: v.descripcion,
-                    start: moment(v.fechainicio),
-                    end: v.fechafin != null ? moment(v.fechafin) : null
-                    });
-                })
-                GenerateCalender(events);
-            },
-            error: function (error) {
-                alert('faiiiiled');
-            }
-        })
-
-        function GenerateCalender(events) {
-            $('#calender').fullCalendar('destroy');
-            $('#calender').fullCalendar({
-                contentHeight: 400,
-                defaultDate: new Date(),
-                timeFormat: 'h(:mm)a',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay,agenda'
-                },
-                eventLimit: true,
-                eventColor: '#378006',
-                events: events,
-                eventClick: function (calEvent, jsEvent, view) {
-                    $('#myModal #eventTitle').text(calEvent.descripcion);
-                    var $description = $('<div/>');
-                    $description.append($('<p/>').html('<b>Start:</b>' + calEvent.fechainicio.format("DD-MMM-YYYY HH:mm a")));
-                    if (calEvent.fechafin != null) {
-                        $description.append($('<p/>').html('<b>End:</b>' + calEvent.fechafin.format("DD-MMM-YYYY HH:mm a")));
-                    }
-                    $description.append($('<p/>').html('<b>Description:</b>' + calEvent.descripcion));
-                    $('#myModal #pDetails').empty().html($description);
-
-                    $('#myModal').modal();
-                }
-            })
-        }
-    })
+				function GenerateCalender(events) {
+					$('#calender').fullCalendar('destroy');
+					$('#calender').fullCalendar({
+						contentHeight: 400,
+						defaultDate: new Date(),
+						timeFormat: 'h(:mm)a',
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'month,basicWeek,basicDay,agenda'
+						},
+						eventLimit: true,
+						eventColor: '#378006',
+						events: events,
+						eventClick: function (calEvent, jsEvent, view) {
+							$('#eventTitle').html(calEvent.descripcion);
+							$('#pDetails').empty().html(calEvent.descripcion);
+							$('#myModal').modal();
+						}
+					})
+				}
+			})
         </script>
 
     }

@@ -31,7 +31,6 @@ namespace Sehin_versión2._0.Models
         public virtual DbSet<Presupuesto> PresupuestoSet { get; set; }
         public virtual DbSet<DetallePresupuesto> DetallePresupuestoSet { get; set; }
         public virtual DbSet<Técnicos> TécnicosSet { get; set; }
-        public virtual DbSet<Agenda> AgendaSet { get; set; }
         public virtual DbSet<Puestos> PuestosSet { get; set; }
         public virtual DbSet<Trabajadores> TrabajadoresSet { get; set; }
         public virtual DbSet<Máquinas> MáquinasSet { get; set; }

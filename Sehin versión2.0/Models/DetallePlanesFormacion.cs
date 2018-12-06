@@ -15,5 +15,6 @@ namespace Sehin_versión2._0.Models
     public partial class DetallePlanesFormacion
     {
         public int Id { get; set; }
+        public string descripcion { get; set; }
     }
 }

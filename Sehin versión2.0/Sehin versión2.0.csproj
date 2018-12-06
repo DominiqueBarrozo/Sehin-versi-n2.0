@@ -205,7 +205,6 @@
     <Compile Include="Controllers\AccidentesController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadesEconomicasController.cs" />
-    <Compile Include="Controllers\AgendaController.cs" />
     <Compile Include="Controllers\CalendarioController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
     <Compile Include="Controllers\CondicionIvasController.cs" />
@@ -239,9 +238,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ActividadesEconomicas.cs">
-      <DependentUpon>Modelo.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Agenda.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Clientes.cs">
@@ -525,11 +521,6 @@
     <Content Include="Views\Técnicos\Details.cshtml" />
     <Content Include="Views\Técnicos\Edit.cshtml" />
     <Content Include="Views\Técnicos\Index.cshtml" />
-    <Content Include="Views\Agenda\Create.cshtml" />
-    <Content Include="Views\Agenda\Delete.cshtml" />
-    <Content Include="Views\Agenda\Details.cshtml" />
-    <Content Include="Views\Agenda\Edit.cshtml" />
-    <Content Include="Views\Agenda\Index.cshtml" />
     <Content Include="Views\Accidentes\Create.cshtml" />
     <Content Include="Views\Accidentes\Delete.cshtml" />
     <Content Include="Views\Accidentes\Details.cshtml" />
@@ -618,6 +609,7 @@
     <Content Include="Views\Localidades\Edit.cshtml" />
     <Content Include="Views\Localidades\Index.cshtml" />
     <Content Include="Views\Calendario\Index.cshtml" />
+    <Content Include="Views\OrdenTrabajoes\Create - Copia.cshtml" />
     <Content Include="Views\OrdenTrabajoes\Create.cshtml" />
     <Content Include="Views\OrdenTrabajoes\Delete.cshtml" />
     <Content Include="Views\OrdenTrabajoes\Details.cshtml" />

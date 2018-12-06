@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/04/2018 16:14:49
--- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 12/06/2018 11:23:51
+-- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -41,32 +41,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_TécnicosLocalidades]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TécnicosSet] DROP CONSTRAINT [FK_TécnicosLocalidades];
 GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoPuestos]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoPuestos];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoTrabajadores]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoTrabajadores];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoMáquinas]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoMáquinas];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoRiesgos]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoRiesgos];
-GO
 IF OBJECT_ID(N'[dbo].[FK_RiesgosTipoRiesgos]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[RiesgosSet] DROP CONSTRAINT [FK_RiesgosTipoRiesgos];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoMedidasPreventivas]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoMedidasPreventivas];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AgendaTécnicos]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AgendaSet] DROP CONSTRAINT [FK_AgendaTécnicos];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AgendaOrdenTrabajo]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AgendaSet] DROP CONSTRAINT [FK_AgendaOrdenTrabajo];
-GO
-IF OBJECT_ID(N'[dbo].[FK_AgendaEstablecimientos]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AgendaSet] DROP CONSTRAINT [FK_AgendaEstablecimientos];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PresupuestoClientes]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PresupuestoSet] DROP CONSTRAINT [FK_PresupuestoClientes];
@@ -92,6 +68,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClientesContacto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ContactoSet] DROP CONSTRAINT [FK_ClientesContacto];
 GO
+IF OBJECT_ID(N'[dbo].[FK_FotoMáquinas]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_FotoMáquinas];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -114,9 +93,6 @@ IF OBJECT_ID(N'[dbo].[DetallePresupuestoSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[TécnicosSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TécnicosSet];
-GO
-IF OBJECT_ID(N'[dbo].[AgendaSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AgendaSet];
 GO
 IF OBJECT_ID(N'[dbo].[PuestosSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PuestosSet];
@@ -168,6 +144,9 @@ IF OBJECT_ID(N'[dbo].[TareasSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[ServicioSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ServicioSet];
+GO
+IF OBJECT_ID(N'[dbo].[FotoSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[FotoSet];
 GO
 
 -- --------------------------------------------------
@@ -250,17 +229,6 @@ CREATE TABLE [dbo].[TécnicosSet] (
 );
 GO
 
--- Creating table 'AgendaSet'
-CREATE TABLE [dbo].[AgendaSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
-    [Fecha] nvarchar(max)  NOT NULL,
-    [Estado] nvarchar(max)  NOT NULL,
-    [TécnicosLegajo] int  NOT NULL,
-    [OrdenTrabajoId] int  NOT NULL,
-    [EstablecimientosId] int  NOT NULL
-);
-GO
-
 -- Creating table 'PuestosSet'
 CREATE TABLE [dbo].[PuestosSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -270,7 +238,8 @@ GO
 
 -- Creating table 'TrabajadoresSet'
 CREATE TABLE [dbo].[TrabajadoresSet] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [nombre] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -309,7 +278,8 @@ GO
 
 -- Creating table 'MedidasPreventivasSet'
 CREATE TABLE [dbo].[MedidasPreventivasSet] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [descripcion] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -326,15 +296,7 @@ CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [requierefirma] bit  NULL,
     [fechavencimiento] datetime  NULL,
     [diasprogramacion] int  NOT NULL,
-    [fechafinprogracion] datetime  NOT NULL,
-    [EstablecimientosId] int  NOT NULL,
-    [ServicioId] int  NOT NULL,
-    [PuestosId] int  NULL,
-    [TrabajadoresId] int  NULL,
-    [MáquinasId] int  NULL,
-    [RiesgosId] int  NULL,
-    [MedidasPreventivasId] int  NULL,
-    [TécnicosLegajo] int  NULL
+    [fechafinprogracion] datetime  NOT NULL
 );
 GO
 
@@ -351,7 +313,8 @@ GO
 
 -- Creating table 'DetallePlanesFormacionSet'
 CREATE TABLE [dbo].[DetallePlanesFormacionSet] (
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [descripcion] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -420,7 +383,6 @@ CREATE TABLE [dbo].[FotoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ruta] nvarchar(max)  NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
-    [OrdenTrabajo_Id] int  NULL,
     [Máquinas_Id] int  NULL
 );
 GO
@@ -463,12 +425,6 @@ GO
 ALTER TABLE [dbo].[TécnicosSet]
 ADD CONSTRAINT [PK_TécnicosSet]
     PRIMARY KEY CLUSTERED ([Legajo] ASC);
-GO
-
--- Creating primary key on [Id] in table 'AgendaSet'
-ALTER TABLE [dbo].[AgendaSet]
-ADD CONSTRAINT [PK_AgendaSet]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'PuestosSet'
@@ -703,66 +659,6 @@ ON [dbo].[TécnicosSet]
     ([LocalidadesId]);
 GO
 
--- Creating foreign key on [PuestosId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoPuestos]
-    FOREIGN KEY ([PuestosId])
-    REFERENCES [dbo].[PuestosSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoPuestos'
-CREATE INDEX [IX_FK_OrdenTrabajoPuestos]
-ON [dbo].[OrdenTrabajoSet]
-    ([PuestosId]);
-GO
-
--- Creating foreign key on [TrabajadoresId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoTrabajadores]
-    FOREIGN KEY ([TrabajadoresId])
-    REFERENCES [dbo].[TrabajadoresSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoTrabajadores'
-CREATE INDEX [IX_FK_OrdenTrabajoTrabajadores]
-ON [dbo].[OrdenTrabajoSet]
-    ([TrabajadoresId]);
-GO
-
--- Creating foreign key on [MáquinasId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoMáquinas]
-    FOREIGN KEY ([MáquinasId])
-    REFERENCES [dbo].[MáquinasSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoMáquinas'
-CREATE INDEX [IX_FK_OrdenTrabajoMáquinas]
-ON [dbo].[OrdenTrabajoSet]
-    ([MáquinasId]);
-GO
-
--- Creating foreign key on [RiesgosId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoRiesgos]
-    FOREIGN KEY ([RiesgosId])
-    REFERENCES [dbo].[RiesgosSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoRiesgos'
-CREATE INDEX [IX_FK_OrdenTrabajoRiesgos]
-ON [dbo].[OrdenTrabajoSet]
-    ([RiesgosId]);
-GO
-
 -- Creating foreign key on [TipoRiesgosId] in table 'RiesgosSet'
 ALTER TABLE [dbo].[RiesgosSet]
 ADD CONSTRAINT [FK_RiesgosTipoRiesgos]
@@ -776,66 +672,6 @@ GO
 CREATE INDEX [IX_FK_RiesgosTipoRiesgos]
 ON [dbo].[RiesgosSet]
     ([TipoRiesgosId]);
-GO
-
--- Creating foreign key on [MedidasPreventivasId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoMedidasPreventivas]
-    FOREIGN KEY ([MedidasPreventivasId])
-    REFERENCES [dbo].[MedidasPreventivasSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoMedidasPreventivas'
-CREATE INDEX [IX_FK_OrdenTrabajoMedidasPreventivas]
-ON [dbo].[OrdenTrabajoSet]
-    ([MedidasPreventivasId]);
-GO
-
--- Creating foreign key on [TécnicosLegajo] in table 'AgendaSet'
-ALTER TABLE [dbo].[AgendaSet]
-ADD CONSTRAINT [FK_AgendaTécnicos]
-    FOREIGN KEY ([TécnicosLegajo])
-    REFERENCES [dbo].[TécnicosSet]
-        ([Legajo])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AgendaTécnicos'
-CREATE INDEX [IX_FK_AgendaTécnicos]
-ON [dbo].[AgendaSet]
-    ([TécnicosLegajo]);
-GO
-
--- Creating foreign key on [OrdenTrabajoId] in table 'AgendaSet'
-ALTER TABLE [dbo].[AgendaSet]
-ADD CONSTRAINT [FK_AgendaOrdenTrabajo]
-    FOREIGN KEY ([OrdenTrabajoId])
-    REFERENCES [dbo].[OrdenTrabajoSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AgendaOrdenTrabajo'
-CREATE INDEX [IX_FK_AgendaOrdenTrabajo]
-ON [dbo].[AgendaSet]
-    ([OrdenTrabajoId]);
-GO
-
--- Creating foreign key on [EstablecimientosId] in table 'AgendaSet'
-ALTER TABLE [dbo].[AgendaSet]
-ADD CONSTRAINT [FK_AgendaEstablecimientos]
-    FOREIGN KEY ([EstablecimientosId])
-    REFERENCES [dbo].[EstablecimientosSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_AgendaEstablecimientos'
-CREATE INDEX [IX_FK_AgendaEstablecimientos]
-ON [dbo].[AgendaSet]
-    ([EstablecimientosId]);
 GO
 
 -- Creating foreign key on [ClientesId] in table 'PresupuestoSet'
@@ -956,66 +792,6 @@ GO
 CREATE INDEX [IX_FK_ClientesContacto]
 ON [dbo].[ContactoSet]
     ([ClientesId]);
-GO
-
--- Creating foreign key on [TécnicosLegajo] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoTécnicos]
-    FOREIGN KEY ([TécnicosLegajo])
-    REFERENCES [dbo].[TécnicosSet]
-        ([Legajo])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoTécnicos'
-CREATE INDEX [IX_FK_OrdenTrabajoTécnicos]
-ON [dbo].[OrdenTrabajoSet]
-    ([TécnicosLegajo]);
-GO
-
--- Creating foreign key on [EstablecimientosId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoEstablecimientos]
-    FOREIGN KEY ([EstablecimientosId])
-    REFERENCES [dbo].[EstablecimientosSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoEstablecimientos'
-CREATE INDEX [IX_FK_OrdenTrabajoEstablecimientos]
-ON [dbo].[OrdenTrabajoSet]
-    ([EstablecimientosId]);
-GO
-
--- Creating foreign key on [ServicioId] in table 'OrdenTrabajoSet'
-ALTER TABLE [dbo].[OrdenTrabajoSet]
-ADD CONSTRAINT [FK_OrdenTrabajoServicio]
-    FOREIGN KEY ([ServicioId])
-    REFERENCES [dbo].[ServicioSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_OrdenTrabajoServicio'
-CREATE INDEX [IX_FK_OrdenTrabajoServicio]
-ON [dbo].[OrdenTrabajoSet]
-    ([ServicioId]);
-GO
-
--- Creating foreign key on [OrdenTrabajo_Id] in table 'FotoSet'
-ALTER TABLE [dbo].[FotoSet]
-ADD CONSTRAINT [FK_FotoOrdenTrabajo]
-    FOREIGN KEY ([OrdenTrabajo_Id])
-    REFERENCES [dbo].[OrdenTrabajoSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FotoOrdenTrabajo'
-CREATE INDEX [IX_FK_FotoOrdenTrabajo]
-ON [dbo].[FotoSet]
-    ([OrdenTrabajo_Id]);
 GO
 
 -- Creating foreign key on [Máquinas_Id] in table 'FotoSet'

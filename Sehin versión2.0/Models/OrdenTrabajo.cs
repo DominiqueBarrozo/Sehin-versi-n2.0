@@ -14,13 +14,6 @@ namespace Sehin_versión2._0.Models
     
     public partial class OrdenTrabajo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OrdenTrabajo()
-        {
-            this.Agenda = new HashSet<Agenda>();
-            this.Foto = new HashSet<Foto>();
-        }
-    
         public int Id { get; set; }
         public string descripcion { get; set; }
         public string descripciondetallada { get; set; }
@@ -33,26 +26,5 @@ namespace Sehin_versión2._0.Models
         public Nullable<System.DateTime> fechavencimiento { get; set; }
         public int diasprogramacion { get; set; }
         public System.DateTime fechafinprogracion { get; set; }
-        public int EstablecimientosId { get; set; }
-        public int ServicioId { get; set; }
-        public Nullable<int> PuestosId { get; set; }
-        public Nullable<int> TrabajadoresId { get; set; }
-        public Nullable<int> MáquinasId { get; set; }
-        public Nullable<int> RiesgosId { get; set; }
-        public Nullable<int> MedidasPreventivasId { get; set; }
-        public Nullable<int> TécnicosLegajo { get; set; }
-    
-        public virtual Puestos Puestos { get; set; }
-        public virtual Trabajadores Trabajadores { get; set; }
-        public virtual Máquinas Máquinas { get; set; }
-        public virtual Riesgos Riesgos { get; set; }
-        public virtual MedidasPreventivas MedidasPreventivas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Agenda> Agenda { get; set; }
-        public virtual Técnicos Técnicos { get; set; }
-        public virtual Establecimientos Establecimientos { get; set; }
-        public virtual Servicio Servicio { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Foto> Foto { get; set; }
     }
 }

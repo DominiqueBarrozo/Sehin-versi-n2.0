@@ -14,13 +14,6 @@ namespace Sehin_versión2._0.Models
     
     public partial class Establecimientos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Establecimientos()
-        {
-            this.Agenda = new HashSet<Agenda>();
-            this.OrdenTrabajo = new HashSet<OrdenTrabajo>();
-        }
-    
         public int Id { get; set; }
         public string Nombre { get; set; }
         public short CantTrabajadores { get; set; }
@@ -34,9 +27,5 @@ namespace Sehin_versión2._0.Models
         public virtual Clientes Clientes { get; set; }
         public virtual Localidades Localidades { get; set; }
         public virtual ActividadesEconomicas ActividadesEconomicas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Agenda> Agenda { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrdenTrabajo> OrdenTrabajo { get; set; }
     }
 }

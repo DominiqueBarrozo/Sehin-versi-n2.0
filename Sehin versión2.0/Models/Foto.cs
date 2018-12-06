@@ -18,7 +18,6 @@ namespace Sehin_versión2._0.Models
         public string ruta { get; set; }
         public string descripcion { get; set; }
     
-        public virtual OrdenTrabajo OrdenTrabajo { get; set; }
         public virtual Máquinas Máquinas { get; set; }
     }
 }

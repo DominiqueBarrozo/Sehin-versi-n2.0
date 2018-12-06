@@ -17,15 +17,13 @@ namespace Sehin_versión2._0.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Trabajadores()
         {
-            this.OrdenTrabajo = new HashSet<OrdenTrabajo>();
             this.Accidentes = new HashSet<Accidentes>();
             this.PlanesFormacion = new HashSet<PlanesFormacion>();
         }
     
         public int Id { get; set; }
+        public string nombre { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrdenTrabajo> OrdenTrabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Accidentes> Accidentes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

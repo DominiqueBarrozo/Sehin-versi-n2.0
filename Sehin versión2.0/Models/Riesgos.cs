@@ -14,19 +14,11 @@ namespace Sehin_versión2._0.Models
     
     public partial class Riesgos
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Riesgos()
-        {
-            this.OrdenTrabajo = new HashSet<OrdenTrabajo>();
-        }
-    
         public int Id { get; set; }
         public string Factor { get; set; }
         public string CondicionTrabajo { get; set; }
         public int TipoRiesgosId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrdenTrabajo> OrdenTrabajo { get; set; }
         public virtual TipoRiesgos TipoRiesgos { get; set; }
     }
 }
