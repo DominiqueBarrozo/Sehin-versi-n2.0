@@ -75,8 +75,8 @@
 						events: events,
 						eventClick: function (calEvent, jsEvent, view) {
 							$('#eventTitle').html(calEvent.descripcion);
-							$('#pDetails').empty().html(calEvent.descripcion);
-							$('#myModal').modal();
+                            $('#pDetails').empty().html(calEvent.descripcion);
+                            $('#myModal').appendTo("body").modal("toggle")
 						}
 					})
 				}
