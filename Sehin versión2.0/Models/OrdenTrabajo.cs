@@ -26,5 +26,6 @@ namespace Sehin_versión2._0.Models
         public Nullable<System.DateTime> fechavencimiento { get; set; }
         public int diasprogramacion { get; set; }
         public System.DateTime fechafinprogracion { get; set; }
+        public int ServicioId { get; set; }
     }
 }

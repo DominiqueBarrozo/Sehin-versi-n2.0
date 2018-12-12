@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/10/2018 13:40:01
+-- Date Created: 12/11/2018 14:47:29
 -- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
@@ -70,6 +70,12 @@ IF OBJECT_ID(N'[dbo].[FK_ClientesContacto]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_FotoMáquinas]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_FotoMáquinas];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ServicioTipoServicio]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ServicioSet] DROP CONSTRAINT [FK_ServicioTipoServicio];
+GO
+IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoServicio]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoServicio];
 GO
 
 -- --------------------------------------------------
@@ -147,6 +153,9 @@ IF OBJECT_ID(N'[dbo].[ServicioSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FotoSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[FotoSet];
+GO
+IF OBJECT_ID(N'[dbo].[TipoServicioSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TipoServicioSet];
 GO
 
 -- --------------------------------------------------
@@ -296,7 +305,8 @@ CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [requierefirma] bit  NULL,
     [fechavencimiento] datetime  NULL,
     [diasprogramacion] int  NOT NULL,
-    [fechafinprogracion] datetime  NOT NULL
+    [fechafinprogracion] datetime  NOT NULL,
+    [ServicioId] int  NOT NULL
 );
 GO
 
@@ -374,7 +384,9 @@ CREATE TABLE [dbo].[ServicioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [nombre] nvarchar(max)  NOT NULL,
     [precio] float  NOT NULL,
-    [activo] bit  NOT NULL
+    [activo] bit  NOT NULL,
+    [ley] nvarchar(max)  NOT NULL,
+    [TipoServicio_Id] int  NOT NULL
 );
 GO
 
@@ -384,6 +396,13 @@ CREATE TABLE [dbo].[FotoSet] (
     [ruta] nvarchar(max)  NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
     [Máquinas_Id] int  NULL
+);
+GO
+
+-- Creating table 'TipoServicioSet'
+CREATE TABLE [dbo].[TipoServicioSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Descripcion] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -532,6 +551,12 @@ GO
 -- Creating primary key on [Id] in table 'FotoSet'
 ALTER TABLE [dbo].[FotoSet]
 ADD CONSTRAINT [PK_FotoSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TipoServicioSet'
+ALTER TABLE [dbo].[TipoServicioSet]
+ADD CONSTRAINT [PK_TipoServicioSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -807,6 +832,21 @@ GO
 CREATE INDEX [IX_FK_FotoMáquinas]
 ON [dbo].[FotoSet]
     ([Máquinas_Id]);
+GO
+
+-- Creating foreign key on [TipoServicio_Id] in table 'ServicioSet'
+ALTER TABLE [dbo].[ServicioSet]
+ADD CONSTRAINT [FK_ServicioTipoServicio]
+    FOREIGN KEY ([TipoServicio_Id])
+    REFERENCES [dbo].[TipoServicioSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ServicioTipoServicio'
+CREATE INDEX [IX_FK_ServicioTipoServicio]
+ON [dbo].[ServicioSet]
+    ([TipoServicio_Id]);
 GO
 
 -- --------------------------------------------------

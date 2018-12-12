@@ -24,5 +24,46 @@ namespace Sehin_versión2._0.Controllers
                 return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
             }
         }
+        public JsonResult DeleteEvent(int eventID)
+        {
+            var status = false;
+            using (ModeloContainer dc = new ModeloContainer())
+            {
+                var v = dc.OrdenTrabajoSet.Where(a => a.Id == eventID).FirstOrDefault();
+                if (v != null)
+                {
+                    dc.OrdenTrabajoSet.Remove(v);
+                    dc.SaveChanges();
+                    status = true;
+                }
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
+        [HttpPost]
+        public JsonResult SaveEvent(OrdenTrabajo e)
+        {
+            var status = false;
+            using (ModeloContainer dc = new ModeloContainer())
+            {
+                if (e.Id > 0)
+                {
+                    //Update the event
+                    var v = dc.OrdenTrabajoSet.Where(a => a.Id == e.Id).FirstOrDefault();
+                    if (v != null)
+                    {
+                        v.descripcion = e.descripcion;
+                        v.fechainicio = e.fechainicio;
+                        v.fechafin = e.fechafin;
+                    }
+                }
+                else
+                {
+                    dc.OrdenTrabajoSet.Add(e);
+                }
+                dc.SaveChanges();
+                status = true;
+            }
+            return new JsonResult { Data = new { status = status } };
+        }
     }
 }

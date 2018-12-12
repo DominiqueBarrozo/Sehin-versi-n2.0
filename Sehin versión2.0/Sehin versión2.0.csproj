@@ -318,6 +318,9 @@
     <Compile Include="Models\TipoRiesgos.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TipoServicio.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Trabajadores.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

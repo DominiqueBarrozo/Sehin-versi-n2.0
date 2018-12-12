@@ -30,6 +30,7 @@
     <EntitySet Name="TareasSet" EntityType="Modelo.Store.TareasSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ServicioSet" EntityType="Modelo.Store.ServicioSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FotoSet" EntityType="Modelo.Store.FotoSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TipoServicioSet" EntityType="Modelo.Store.TipoServicioSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EstablecimientosClientes" Association="Modelo.Store.EstablecimientosClientes">
       <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
       <End Role="Clientes" EntitySet="ClientesSet" />
@@ -101,6 +102,10 @@
     <AssociationSet Name="FotoMáquinas" Association="Modelo.Store.FotoMáquinas">
       <End Role="Foto" EntitySet="FotoSet" />
       <End Role="Máquinas" EntitySet="MáquinasSet" />
+    </AssociationSet>
+    <AssociationSet Name="ServicioTipoServicio" Association="Modelo.Store.ServicioTipoServicio">
+      <End Role="Servicio" EntitySet="ServicioSet" />
+      <End Role="TipoServicio" EntitySet="TipoServicioSet" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ClientesSet">
@@ -249,6 +254,7 @@
     <Property Name="fechavencimiento" Type="datetime" Nullable="true" />
     <Property Name="diasprogramacion" Type="int" Nullable="false" />
     <Property Name="fechafinprogracion" Type="datetime" Nullable="false" />
+    <Property Name="ServicioId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PlanesFormacionSet">
     <Key>
@@ -327,6 +333,8 @@
     <Property Name="nombre" Type="nvarchar(max)" Nullable="false" />
     <Property Name="precio" Type="float" Nullable="false" />
     <Property Name="activo" Type="bit" Nullable="false" />
+    <Property Name="ley" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TipoServicio_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FotoSet">
     <Key>
@@ -336,6 +344,13 @@
     <Property Name="ruta" Type="nvarchar(max)" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Máquinas_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TipoServicioSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <Association Name="EstablecimientosClientes">
     <End Role="Establecimientos" Type="Modelo.Store.EstablecimientosSet" Multiplicity="*" />
@@ -553,6 +568,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ServicioTipoServicio">
+    <End Role="Servicio" Type="Modelo.Store.ServicioSet" Multiplicity="*" />
+    <End Role="TipoServicio" Type="Modelo.Store.TipoServicioSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TipoServicio">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Servicio">
+        <PropertyRef Name="TipoServicio_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -654,7 +681,12 @@
             <End Role="Foto" EntitySet="FotoSet" />
             <End Role="Máquinas" EntitySet="MáquinasSet" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="TipoServicioSet" EntityType="Modelo.TipoServicio" />
+          <AssociationSet Name="ServicioTipoServicio" Association="Modelo.ServicioTipoServicio">
+            <End Role="Servicio" EntitySet="ServicioSet" />
+            <End Role="TipoServicio" EntitySet="TipoServicioSet" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
             <PropertyRef Name="Id" />
@@ -824,6 +856,7 @@
           <Property Name="fechavencimiento" Type="DateTime" Nullable="true" />
           <Property Name="diasprogramacion" Type="Int32" Nullable="false" />
           <Property Name="fechafinprogracion" Type="DateTime" Nullable="false" />
+          <Property Name="ServicioId" Type="Int32" Nullable="false" />
           </EntityType>
         <EntityType Name="PlanesFormacion">
           <Key>
@@ -1082,6 +1115,8 @@
           <Property Name="precio" Nullable="false" Type="Double" />
           <Property Name="activo" Nullable="false" Type="Boolean" />
           <NavigationProperty Name="DetallePresupuesto" Relationship="Modelo.DetallePresupuestoServicio" FromRole="Servicio" ToRole="DetallePresupuesto" />
+          <NavigationProperty Name="TipoServicio" Relationship="Modelo.ServicioTipoServicio" FromRole="Servicio" ToRole="TipoServicio" />
+          <Property Name="ley" Type="String" Nullable="false" />
         </EntityType>
         <Association Name="DetallePresupuestoServicio">
           <End Type="Modelo.DetallePresupuesto" Multiplicity="*" Role="DetallePresupuesto" />
@@ -1132,7 +1167,19 @@
           <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
           <End Type="Modelo.Máquinas" Role="Máquinas" Multiplicity="0..1" />
         </Association>
-      </Schema>
+        <EntityType Name="TipoServicio">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Servicio" Relationship="Modelo.ServicioTipoServicio" FromRole="TipoServicio" ToRole="Servicio" />
+          <Property Name="Descripcion" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="ServicioTipoServicio">
+          <End Type="Modelo.Servicio" Role="Servicio" Multiplicity="*" />
+          <End Type="Modelo.TipoServicio" Role="TipoServicio" Multiplicity="1" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1296,6 +1343,7 @@
           <ScalarProperty Name="fechavencimiento" ColumnName="fechavencimiento" />
           <ScalarProperty Name="diasprogramacion" ColumnName="diasprogramacion" />
           <ScalarProperty Name="fechafinprogracion" ColumnName="fechafinprogracion" />
+          <ScalarProperty Name="ServicioId" ColumnName="ServicioId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1383,6 +1431,7 @@
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="precio" ColumnName="precio" />
           <ScalarProperty Name="activo" ColumnName="activo" />
+          <ScalarProperty Name="ley" ColumnName="ley" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1395,6 +1444,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TipoServicioSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo.TipoServicio)">
+        <MappingFragment StoreEntitySet="TipoServicioSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="FotoMáquinas" TypeName="Modelo.FotoMáquinas" StoreEntitySet="FotoSet">
       <EndProperty Name="Máquinas">
         <ScalarProperty Name="Id" ColumnName="Máquinas_Id" />
@@ -1403,6 +1460,14 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Máquinas_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ServicioTipoServicio" TypeName="Modelo.ServicioTipoServicio" StoreEntitySet="ServicioSet">
+      <EndProperty Name="TipoServicio">
+        <ScalarProperty Name="Id" ColumnName="TipoServicio_Id" />
+      </EndProperty>
+      <EndProperty Name="Servicio">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
@@ -1467,7 +1532,9 @@
         <AssociationConnector Association="Modelo.ClientesContacto" />
         <EntityTypeShape EntityType="Modelo.Foto" Width="1.5" PointX="8.125" PointY="21.375" />
         <AssociationConnector Association="Modelo.FotoMáquinas" />
-      </Diagram>
+        <EntityTypeShape EntityType="Modelo.TipoServicio" Width="1.5" PointX="15.125" PointY="12" />
+        <AssociationConnector Association="Modelo.ServicioTipoServicio" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
