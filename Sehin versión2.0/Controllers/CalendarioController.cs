@@ -54,6 +54,14 @@ namespace Sehin_versión2._0.Controllers
                         v.descripcion = e.descripcion;
                         v.fechainicio = e.fechainicio;
                         v.fechafin = e.fechafin;
+                        v.estado = e.estado;
+                        v.descripciondetallada = e.descripciondetallada;
+                        v.fechavencimiento = e.fechavencimiento;
+                        v.fechafinprogracion = e.fechafinprogracion;
+                        v.finalizado = e.finalizado;
+                        v.requierefirma = e.requierefirma;
+                        v.ServicioId = e.ServicioId;
+                        v.prioridad = e.prioridad;
                     }
                 }
                 else
