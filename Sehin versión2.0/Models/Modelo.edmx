@@ -243,18 +243,18 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="true" />
     <Property Name="descripciondetallada" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="fechainicio" Type="datetime" Nullable="false" />
+    <Property Name="fechainicio" Type="datetime" Nullable="true" />
     <Property Name="fechafin" Type="datetime" Nullable="true" />
-    <Property Name="estado" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="finalizado" Type="bit" Nullable="false" />
-    <Property Name="prioridad" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="estado" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="finalizado" Type="bit" Nullable="true" />
+    <Property Name="prioridad" Type="nvarchar(max)" Nullable="true" />
     <Property Name="requierefirma" Type="bit" Nullable="true" />
     <Property Name="fechavencimiento" Type="datetime" Nullable="true" />
-    <Property Name="diasprogramacion" Type="int" Nullable="false" />
-    <Property Name="fechafinprogracion" Type="datetime" Nullable="false" />
-    <Property Name="ServicioId" Type="int" Nullable="false" />
+    <Property Name="diasprogramacion" Type="int" Nullable="true" />
+    <Property Name="fechafinprogracion" Type="datetime" Nullable="true" />
+    <Property Name="ServicioId" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="PlanesFormacionSet">
     <Key>
@@ -845,18 +845,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="descripcion" Type="String" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="true" />
           <Property Name="descripciondetallada" Type="String" Nullable="true" />
-          <Property Name="fechainicio" Type="DateTime" Nullable="false" />
+          <Property Name="fechainicio" Type="DateTime" Nullable="true" />
           <Property Name="fechafin" Type="DateTime" Nullable="true" />
-          <Property Name="estado" Type="String" Nullable="false" />
-          <Property Name="finalizado" Type="Boolean" Nullable="false" />
-          <Property Name="prioridad" Type="String" Nullable="false" />
+          <Property Name="estado" Type="String" Nullable="true" />
+          <Property Name="finalizado" Type="Boolean" Nullable="true" />
+          <Property Name="prioridad" Type="String" Nullable="true" />
           <Property Name="requierefirma" Type="Boolean" Nullable="true" />
           <Property Name="fechavencimiento" Type="DateTime" Nullable="true" />
-          <Property Name="diasprogramacion" Type="Int32" Nullable="false" />
-          <Property Name="fechafinprogracion" Type="DateTime" Nullable="false" />
-          <Property Name="ServicioId" Type="Int32" Nullable="false" />
+          <Property Name="diasprogramacion" Type="Int32" Nullable="true" />
+          <Property Name="fechafinprogracion" Type="DateTime" Nullable="true" />
+          <Property Name="ServicioId" Type="Int32" Nullable="true" />
           </EntityType>
         <EntityType Name="PlanesFormacion">
           <Key>
@@ -1489,7 +1489,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="09e2469d9d534f5eb330de62a0092dd6" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="09e2469d9d534f5eb330de62a0092dd6" Name="Diagram1" ZoomLevel="127">
         <EntityTypeShape EntityType="Modelo.Clientes" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Establecimientos" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Contacto" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
@@ -1503,7 +1503,7 @@
         <EntityTypeShape EntityType="Modelo.TipoRiesgos" Width="1.5" PointX="7.5" PointY="18.875" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Accidentes" Width="1.5" PointX="7.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.MedidasPreventivas" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Modelo.OrdenTrabajo" Width="1.5" PointX="1" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Modelo.OrdenTrabajo" Width="2.25" PointX="1" PointY="16.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.PlanesFormacion" Width="1.5" PointX="10" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.DetallePlanesFormacion" Width="1.5" PointX="12.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Modelo.Cursos" Width="1.5" PointX="10" PointY="16.875" IsExpanded="true" />

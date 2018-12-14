@@ -179,15 +179,7 @@
                                 title: v.descripcion,
                                 description: v.descripcion,
                                 start: moment(v.fechainicio),
-                                end: v.fechafin != null ? moment(v.fechafin) : null,
-                                descripciondetallada: v.descripciondetallada,
-                                Categoria: v.Categoria,
-                                Estado: v.Estado,
-                                Periodicidad: v.Periodicidad,
-                                ServicioId: v.ServicioId,
-                                RequiereFirma: v.RequiereFirma,
-                                FechaVencimiento: v.FechaVencimiento != null ? moment(v.FechaVencimiento) : null,
-                                Fechafinprogracion: v.Fechafinprogracion != null ? moment(v.Fechafinprogracion) : null
+                                end: v.fechafin != null ? moment(v.fechafin) : null
 
                             });
                         })
@@ -295,8 +287,6 @@
                     $('#txtSubject').val(selectedEvent.title);
                     $('#txtStart').val(selectedEvent.start.format('DD/MM/YYYY'));
                     $('#txtEnd').val(selectedEvent.end != null ? selectedEvent.end.format('DD/MM/YYYY') : '');
-                    $('#txtDescription').val(selectedEvent.description);
-                   
                 }
                 $('#myModal').appendTo("body").modal("hide");
                 $('#myModalSave').appendTo("body").modal();

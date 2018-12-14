@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/11/2018 14:47:29
+-- Date Created: 12/14/2018 10:53:26
 -- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
@@ -73,9 +73,6 @@ IF OBJECT_ID(N'[dbo].[FK_FotoMáquinas]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ServicioTipoServicio]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ServicioSet] DROP CONSTRAINT [FK_ServicioTipoServicio];
-GO
-IF OBJECT_ID(N'[dbo].[FK_OrdenTrabajoServicio]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OrdenTrabajoSet] DROP CONSTRAINT [FK_OrdenTrabajoServicio];
 GO
 
 -- --------------------------------------------------
@@ -295,18 +292,18 @@ GO
 -- Creating table 'OrdenTrabajoSet'
 CREATE TABLE [dbo].[OrdenTrabajoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [descripcion] nvarchar(max)  NOT NULL,
+    [descripcion] nvarchar(max)  NULL,
     [descripciondetallada] nvarchar(max)  NULL,
-    [fechainicio] datetime  NOT NULL,
+    [fechainicio] datetime  NULL,
     [fechafin] datetime  NULL,
-    [estado] nvarchar(max)  NOT NULL,
-    [finalizado] bit  NOT NULL,
-    [prioridad] nvarchar(max)  NOT NULL,
+    [estado] nvarchar(max)  NULL,
+    [finalizado] bit  NULL,
+    [prioridad] nvarchar(max)  NULL,
     [requierefirma] bit  NULL,
     [fechavencimiento] datetime  NULL,
-    [diasprogramacion] int  NOT NULL,
-    [fechafinprogracion] datetime  NOT NULL,
-    [ServicioId] int  NOT NULL
+    [diasprogramacion] int  NULL,
+    [fechafinprogracion] datetime  NULL,
+    [ServicioId] int  NULL
 );
 GO
 

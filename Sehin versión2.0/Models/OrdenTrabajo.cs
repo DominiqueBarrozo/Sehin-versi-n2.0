@@ -17,15 +17,15 @@ namespace Sehin_versión2._0.Models
         public int Id { get; set; }
         public string descripcion { get; set; }
         public string descripciondetallada { get; set; }
-        public System.DateTime fechainicio { get; set; }
+        public Nullable<System.DateTime> fechainicio { get; set; }
         public Nullable<System.DateTime> fechafin { get; set; }
         public string estado { get; set; }
-        public bool finalizado { get; set; }
+        public Nullable<bool> finalizado { get; set; }
         public string prioridad { get; set; }
         public Nullable<bool> requierefirma { get; set; }
         public Nullable<System.DateTime> fechavencimiento { get; set; }
-        public int diasprogramacion { get; set; }
-        public System.DateTime fechafinprogracion { get; set; }
-        public int ServicioId { get; set; }
+        public Nullable<int> diasprogramacion { get; set; }
+        public Nullable<System.DateTime> fechafinprogracion { get; set; }
+        public Nullable<int> ServicioId { get; set; }
     }
 }
