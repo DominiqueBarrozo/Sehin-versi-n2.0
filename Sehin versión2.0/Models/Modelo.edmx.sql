@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/14/2018 10:53:26
--- Generated from EDMX file: C:\Users\Domi.Barrozo\Desktop\Sehin\Sehin versión2.0\Sehin versión2.0\Models\Modelo.edmx
+-- Date Created: 12/14/2018 11:54:31
+-- Generated from EDMX file: C:\Users\marcos\Documents\MEGAsync\Programacion\SehinCompartido\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
