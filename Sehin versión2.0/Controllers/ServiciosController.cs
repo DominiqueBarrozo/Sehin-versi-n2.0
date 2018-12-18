@@ -115,6 +115,11 @@ namespace Sehin_versión2._0.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult ServiciosExcel()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

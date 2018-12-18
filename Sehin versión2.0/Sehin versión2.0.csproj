@@ -619,6 +619,7 @@
     <Content Include="Views\OrdenTrabajoes\Details.cshtml" />
     <Content Include="Views\OrdenTrabajoes\Edit.cshtml" />
     <Content Include="Views\OrdenTrabajoes\Index.cshtml" />
+    <Content Include="Views\Servicios\ServiciosExcel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
