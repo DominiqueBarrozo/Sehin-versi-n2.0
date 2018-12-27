@@ -6,45 +6,45 @@
 <br><br>
 <div class="container" style="background-color:orange;opacity:.8;color: black">
     <br>
-    <h2>Index</h2>
+    <h2>Listado de Ordenes de Trabajo</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Crear", "Create")
     </p>
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.descripcion)
+                Descripción
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.descripciondetallada)
+                Detalle
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechainicio)
+                Inicio
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechafin)
+                Fin
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.estado)
+                Estado
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.finalizado)
+                Finalizado
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.prioridad)
+                Prioridad
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.requierefirma)
+                Firma
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechavencimiento)
+                Vencimiento
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.diasprogramacion)
+                Días Programación
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.fechafinprogracion)
+                Fin Programación
             </th>
             <th></th>
         </tr>
@@ -85,11 +85,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.fechafinprogracion)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                
             </tr>
         }
 
