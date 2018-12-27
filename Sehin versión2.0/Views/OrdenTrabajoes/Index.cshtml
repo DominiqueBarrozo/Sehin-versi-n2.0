@@ -3,91 +3,95 @@
 @{
     ViewBag.Title = "Index";
 }
+<br><br>
+<div class="container" style="background-color:orange;opacity:.8;color: black">
+    <br>
+    <h2>Index</h2>
 
-<h2>Index</h2>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripciondetallada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechainicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechafin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.estado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.finalizado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prioridad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.requierefirma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechavencimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.diasprogramacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fechafinprogracion)
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.descripciondetallada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechainicio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechafin)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.finalizado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prioridad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.requierefirma)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechavencimiento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.diasprogramacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechafinprogracion)
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descripciondetallada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechainicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechafin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.finalizado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prioridad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.requierefirma)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechavencimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.diasprogramacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechafinprogracion)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripcion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.descripciondetallada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechainicio)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechafin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.finalizado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prioridad)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.requierefirma)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechavencimiento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.diasprogramacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechafinprogracion)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+    </table>
+</div>
