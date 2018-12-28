@@ -17,7 +17,9 @@ namespace Sehin_versión2._0.Models
         public int Id { get; set; }
         public string ruta { get; set; }
         public string descripcion { get; set; }
+        public int WorkOrderId { get; set; }
     
         public virtual Máquinas Máquinas { get; set; }
+        public virtual WorkOrder WorkOrder { get; set; }
     }
 }

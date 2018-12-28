@@ -232,6 +232,7 @@
     <Compile Include="Controllers\TipoRiesgosController.cs" />
     <Compile Include="Controllers\TrabajadoresController.cs" />
     <Compile Include="Controllers\TécnicosController.cs" />
+    <Compile Include="Controllers\WorkOrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -327,6 +328,9 @@
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Técnicos.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkOrder.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -625,6 +629,11 @@
     <Content Include="Views\OrdenTrabajoes\Index.cshtml" />
     <Content Include="Views\Servicios\ServiciosExcel.cshtml" />
     <Content Include="Views\PresupuestoHome\Index.cshtml" />
+    <Content Include="Views\WorkOrders\Create.cshtml" />
+    <Content Include="Views\WorkOrders\Delete.cshtml" />
+    <Content Include="Views\WorkOrders\Details.cshtml" />
+    <Content Include="Views\WorkOrders\Edit.cshtml" />
+    <Content Include="Views\WorkOrders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

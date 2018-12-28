@@ -12,25 +12,28 @@ namespace Sehin_versión2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Técnicos
+    public partial class WorkOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Técnicos()
+        public WorkOrder()
         {
-            this.WorkOrder = new HashSet<WorkOrder>();
+            this.Foto = new HashSet<Foto>();
         }
     
-        public int Legajo { get; set; }
-        public string Nombre { get; set; }
-        public string TipoDoc { get; set; }
-        public string NumeroDoc { get; set; }
-        public string Domicilio { get; set; }
-        public string Email { get; set; }
-        public string Telefono { get; set; }
-        public int LocalidadesId { get; set; }
+        public int Id { get; set; }
+        public string titulo { get; set; }
+        public string descripcion { get; set; }
+        public System.DateTime fecha { get; set; }
+        public System.DateTime fechavencimiento { get; set; }
+        public short programacion { get; set; }
+        public short prioridad { get; set; }
+        public int TécnicosLegajo { get; set; }
+        public bool finalizada { get; set; }
+        public System.DateTime fechafinalizada { get; set; }
     
-        public virtual Localidades Localidades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkOrder> WorkOrder { get; set; }
+        public virtual ICollection<Foto> Foto { get; set; }
+        public virtual Clientes Clientes { get; set; }
+        public virtual Técnicos Técnicos { get; set; }
     }
 }

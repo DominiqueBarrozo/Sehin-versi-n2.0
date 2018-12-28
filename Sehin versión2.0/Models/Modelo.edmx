@@ -31,6 +31,7 @@
     <EntitySet Name="ServicioSet" EntityType="Modelo.Store.ServicioSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FotoSet" EntityType="Modelo.Store.FotoSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TipoServicioSet" EntityType="Modelo.Store.TipoServicioSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkOrderSet" EntityType="Modelo.Store.WorkOrderSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EstablecimientosClientes" Association="Modelo.Store.EstablecimientosClientes">
       <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
       <End Role="Clientes" EntitySet="ClientesSet" />
@@ -107,6 +108,18 @@
       <End Role="Servicio" EntitySet="ServicioSet" />
       <End Role="TipoServicio" EntitySet="TipoServicioSet" />
     </AssociationSet>
+    <AssociationSet Name="WorkOrderFoto" Association="Modelo.Store.WorkOrderFoto">
+      <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+      <End Role="Foto" EntitySet="FotoSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkOrderClientes" Association="Modelo.Store.WorkOrderClientes">
+      <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+      <End Role="Clientes" EntitySet="ClientesSet" />
+    </AssociationSet>
+    <AssociationSet Name="WorkOrderTécnicos" Association="Modelo.Store.WorkOrderTécnicos">
+      <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+      <End Role="Técnicos" EntitySet="TécnicosSet" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="ClientesSet">
     <Key>
@@ -118,6 +131,7 @@
     <Property Name="IngBrutos" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CondicionIvaId" Type="int" Nullable="false" />
     <Property Name="LocalidadesId" Type="int" Nullable="false" />
+    <Property Name="WorkOrder_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="EstablecimientosSet">
     <Key>
@@ -343,6 +357,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ruta" Type="nvarchar(max)" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkOrderId" Type="int" Nullable="false" />
     <Property Name="Máquinas_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="TipoServicioSet">
@@ -351,6 +366,21 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkOrderSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="fecha" Type="datetime" Nullable="false" />
+    <Property Name="fechavencimiento" Type="datetime" Nullable="false" />
+    <Property Name="programacion" Type="smallint" Nullable="false" />
+    <Property Name="prioridad" Type="smallint" Nullable="false" />
+    <Property Name="TécnicosLegajo" Type="int" Nullable="false" />
+    <Property Name="finalizada" Type="bit" Nullable="false" />
+    <Property Name="fechafinalizada" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="EstablecimientosClientes">
     <End Role="Establecimientos" Type="Modelo.Store.EstablecimientosSet" Multiplicity="*" />
@@ -580,6 +610,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="WorkOrderFoto">
+    <End Role="WorkOrder" Type="Modelo.Store.WorkOrderSet" Multiplicity="1" />
+    <End Role="Foto" Type="Modelo.Store.FotoSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Foto">
+        <PropertyRef Name="WorkOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkOrderClientes">
+    <End Role="WorkOrder" Type="Modelo.Store.WorkOrderSet" Multiplicity="0..1" />
+    <End Role="Clientes" Type="Modelo.Store.ClientesSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Clientes">
+        <PropertyRef Name="WorkOrder_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkOrderTécnicos">
+    <End Role="WorkOrder" Type="Modelo.Store.WorkOrderSet" Multiplicity="*" />
+    <End Role="Técnicos" Type="Modelo.Store.TécnicosSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Técnicos">
+        <PropertyRef Name="Legajo" />
+      </Principal>
+      <Dependent Role="WorkOrder">
+        <PropertyRef Name="TécnicosLegajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -686,6 +752,19 @@
             <End Role="Servicio" EntitySet="ServicioSet" />
             <End Role="TipoServicio" EntitySet="TipoServicioSet" />
           </AssociationSet>
+          <EntitySet Name="WorkOrderSet" EntityType="Modelo.WorkOrder" />
+          <AssociationSet Name="WorkOrderFoto" Association="Modelo.WorkOrderFoto">
+            <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+            <End Role="Foto" EntitySet="FotoSet" />
+          </AssociationSet>
+          <AssociationSet Name="WorkOrderClientes" Association="Modelo.WorkOrderClientes">
+            <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+            <End Role="Clientes" EntitySet="ClientesSet" />
+          </AssociationSet>
+          <AssociationSet Name="WorkOrderTécnicos" Association="Modelo.WorkOrderTécnicos">
+            <End Role="WorkOrder" EntitySet="WorkOrderSet" />
+            <End Role="Técnicos" EntitySet="TécnicosSet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
@@ -702,6 +781,7 @@
           <Property Name="LocalidadesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Presupuesto" Relationship="Modelo.PresupuestoClientes" FromRole="Clientes" ToRole="Presupuesto" />
           <NavigationProperty Name="Contacto" Relationship="Modelo.ClientesContacto" FromRole="Clientes" ToRole="Contacto" />
+          <NavigationProperty Name="WorkOrder" Relationship="Modelo.WorkOrderClientes" FromRole="Clientes" ToRole="WorkOrder" />
           </EntityType>
         <EntityType Name="Establecimientos">
           <Key>
@@ -777,6 +857,7 @@
           <Property Name="Telefono" Type="String" Nullable="false" />
           <NavigationProperty Name="Localidades" Relationship="Modelo.TécnicosLocalidades" FromRole="Técnicos" ToRole="Localidades" />
           <Property Name="LocalidadesId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="WorkOrder" Relationship="Modelo.WorkOrderTécnicos" FromRole="Técnicos" ToRole="WorkOrder" />
         </EntityType>
         <EntityType Name="Puestos">
           <Key>
@@ -1162,6 +1243,8 @@
           <Property Name="ruta" Type="String" Nullable="false" />
           <Property Name="descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Máquinas" Relationship="Modelo.FotoMáquinas" FromRole="Foto" ToRole="Máquinas" />
+          <NavigationProperty Name="WorkOrder" Relationship="Modelo.WorkOrderFoto" FromRole="Foto" ToRole="WorkOrder" />
+          <Property Name="WorkOrderId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FotoMáquinas">
           <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
@@ -1178,6 +1261,52 @@
         <Association Name="ServicioTipoServicio">
           <End Type="Modelo.Servicio" Role="Servicio" Multiplicity="*" />
           <End Type="Modelo.TipoServicio" Role="TipoServicio" Multiplicity="1" />
+        </Association>
+        <EntityType Name="WorkOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="titulo" Type="String" Nullable="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" />
+          <Property Name="fechavencimiento" Type="DateTime" Nullable="false" />
+          <Property Name="programacion" Type="Int16" Nullable="false" />
+          <Property Name="prioridad" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Foto" Relationship="Modelo.WorkOrderFoto" FromRole="WorkOrder" ToRole="Foto" />
+          <NavigationProperty Name="Clientes" Relationship="Modelo.WorkOrderClientes" FromRole="WorkOrder" ToRole="Clientes" />
+          <NavigationProperty Name="Técnicos" Relationship="Modelo.WorkOrderTécnicos" FromRole="WorkOrder" ToRole="Técnicos" />
+          <Property Name="TécnicosLegajo" Type="Int32" Nullable="false" />
+          <Property Name="finalizada" Type="Boolean" Nullable="false" />
+          <Property Name="fechafinalizada" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="WorkOrderFoto">
+          <End Type="Modelo.WorkOrder" Role="WorkOrder" Multiplicity="1" />
+          <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Foto">
+              <PropertyRef Name="WorkOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="WorkOrderClientes">
+          <End Type="Modelo.WorkOrder" Role="WorkOrder" Multiplicity="0..1" />
+          <End Type="Modelo.Clientes" Role="Clientes" Multiplicity="0..1" />
+        </Association>
+        <Association Name="WorkOrderTécnicos">
+          <End Type="Modelo.WorkOrder" Role="WorkOrder" Multiplicity="*" />
+          <End Type="Modelo.Técnicos" Role="Técnicos" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Técnicos">
+              <PropertyRef Name="Legajo" />
+            </Principal>
+            <Dependent Role="WorkOrder">
+              <PropertyRef Name="TécnicosLegajo" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1441,6 +1570,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ruta" ColumnName="ruta" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="WorkOrderId" ColumnName="WorkOrderId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1449,6 +1579,22 @@
         <MappingFragment StoreEntitySet="TipoServicioSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkOrderSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo.WorkOrder)">
+        <MappingFragment StoreEntitySet="WorkOrderSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="fechavencimiento" ColumnName="fechavencimiento" />
+          <ScalarProperty Name="programacion" ColumnName="programacion" />
+          <ScalarProperty Name="prioridad" ColumnName="prioridad" />
+          <ScalarProperty Name="TécnicosLegajo" ColumnName="TécnicosLegajo" />
+          <ScalarProperty Name="finalizada" ColumnName="finalizada" />
+          <ScalarProperty Name="fechafinalizada" ColumnName="fechafinalizada" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1468,6 +1614,15 @@
       <EndProperty Name="Servicio">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WorkOrderClientes" TypeName="Modelo.WorkOrderClientes" StoreEntitySet="ClientesSet">
+      <EndProperty Name="WorkOrder">
+        <ScalarProperty Name="Id" ColumnName="WorkOrder_Id" />
+      </EndProperty>
+      <EndProperty Name="Clientes">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="WorkOrder_Id" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
@@ -1534,6 +1689,10 @@
         <AssociationConnector Association="Modelo.FotoMáquinas" />
         <EntityTypeShape EntityType="Modelo.TipoServicio" Width="1.5" PointX="15.125" PointY="12" />
         <AssociationConnector Association="Modelo.ServicioTipoServicio" />
+        <EntityTypeShape EntityType="Modelo.WorkOrder" Width="1.5" PointX="0.875" PointY="21.75" />
+        <AssociationConnector Association="Modelo.WorkOrderFoto" />
+        <AssociationConnector Association="Modelo.WorkOrderClientes" />
+        <AssociationConnector Association="Modelo.WorkOrderTécnicos" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

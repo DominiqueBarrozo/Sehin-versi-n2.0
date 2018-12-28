@@ -1,0 +1,90 @@
+﻿@model Sehin_versión2._0.Models.WorkOrder
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechavencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechavencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.programacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.programacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prioridad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prioridad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.finalizada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.finalizada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechafinalizada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechafinalizada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Técnicos.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Técnicos.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

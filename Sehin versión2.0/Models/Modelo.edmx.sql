@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/22/2018 11:50:37
+-- Date Created: 12/28/2018 00:20:59
 -- Generated from EDMX file: C:\Users\marcos\Source\Repos\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
@@ -166,7 +166,8 @@ CREATE TABLE [dbo].[ClientesSet] (
     [CUIT] nvarchar(max)  NOT NULL,
     [IngBrutos] nvarchar(max)  NOT NULL,
     [CondicionIvaId] int  NOT NULL,
-    [LocalidadesId] int  NOT NULL
+    [LocalidadesId] int  NOT NULL,
+    [WorkOrder_Id] int  NULL
 );
 GO
 
@@ -392,6 +393,7 @@ CREATE TABLE [dbo].[FotoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [ruta] nvarchar(max)  NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
+    [WorkOrderId] int  NOT NULL,
     [Máquinas_Id] int  NULL
 );
 GO
@@ -400,6 +402,21 @@ GO
 CREATE TABLE [dbo].[TipoServicioSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Descripcion] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'WorkOrderSet'
+CREATE TABLE [dbo].[WorkOrderSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [titulo] nvarchar(max)  NOT NULL,
+    [descripcion] nvarchar(max)  NOT NULL,
+    [fecha] datetime  NOT NULL,
+    [fechavencimiento] datetime  NOT NULL,
+    [programacion] smallint  NOT NULL,
+    [prioridad] smallint  NOT NULL,
+    [TécnicosLegajo] int  NOT NULL,
+    [finalizada] bit  NOT NULL,
+    [fechafinalizada] datetime  NOT NULL
 );
 GO
 
@@ -554,6 +571,12 @@ GO
 -- Creating primary key on [Id] in table 'TipoServicioSet'
 ALTER TABLE [dbo].[TipoServicioSet]
 ADD CONSTRAINT [PK_TipoServicioSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'WorkOrderSet'
+ALTER TABLE [dbo].[WorkOrderSet]
+ADD CONSTRAINT [PK_WorkOrderSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -844,6 +867,51 @@ GO
 CREATE INDEX [IX_FK_ServicioTipoServicio]
 ON [dbo].[ServicioSet]
     ([TipoServicio_Id]);
+GO
+
+-- Creating foreign key on [WorkOrderId] in table 'FotoSet'
+ALTER TABLE [dbo].[FotoSet]
+ADD CONSTRAINT [FK_WorkOrderFoto]
+    FOREIGN KEY ([WorkOrderId])
+    REFERENCES [dbo].[WorkOrderSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkOrderFoto'
+CREATE INDEX [IX_FK_WorkOrderFoto]
+ON [dbo].[FotoSet]
+    ([WorkOrderId]);
+GO
+
+-- Creating foreign key on [WorkOrder_Id] in table 'ClientesSet'
+ALTER TABLE [dbo].[ClientesSet]
+ADD CONSTRAINT [FK_WorkOrderClientes]
+    FOREIGN KEY ([WorkOrder_Id])
+    REFERENCES [dbo].[WorkOrderSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkOrderClientes'
+CREATE INDEX [IX_FK_WorkOrderClientes]
+ON [dbo].[ClientesSet]
+    ([WorkOrder_Id]);
+GO
+
+-- Creating foreign key on [TécnicosLegajo] in table 'WorkOrderSet'
+ALTER TABLE [dbo].[WorkOrderSet]
+ADD CONSTRAINT [FK_WorkOrderTécnicos]
+    FOREIGN KEY ([TécnicosLegajo])
+    REFERENCES [dbo].[TécnicosSet]
+        ([Legajo])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkOrderTécnicos'
+CREATE INDEX [IX_FK_WorkOrderTécnicos]
+ON [dbo].[WorkOrderSet]
+    ([TécnicosLegajo]);
 GO
 
 -- --------------------------------------------------

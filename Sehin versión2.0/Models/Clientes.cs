@@ -37,5 +37,6 @@ namespace Sehin_versión2._0.Models
         public virtual ICollection<Presupuesto> Presupuesto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contacto> Contacto { get; set; }
+        public virtual WorkOrder WorkOrder { get; set; }
     }
 }

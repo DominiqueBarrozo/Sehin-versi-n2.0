@@ -59,12 +59,13 @@
                                     <i class="fas fa-id-card fa-fw fa-4x" title="Técnicos"> </i>
                                     <span class="caret" style="color:lightgrey"></span>
                                 </button><ul class="dropdown-menu" style="background-color:orange;opacity:.9;font-size:18px">
-                                    <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
-                                    <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
-                                    <li>@Html.ActionLink("Listado de técnicos", "Index", "Técnicos")</li>
-                                </ul>
+    <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
+    <li role="separator" class="divider"></li>
+    <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
+    <li>@Html.ActionLink("Work Orders", "Index", "WorkOrders")</li>
+    <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
+    <li>@Html.ActionLink("Listado de técnicos", "Index", "Técnicos")</li>
+</ul>
                             </li>
                             <li>
                             <li class="dropdown" style="color:lightgrey">
