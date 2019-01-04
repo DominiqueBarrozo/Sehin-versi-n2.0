@@ -51,5 +51,6 @@ namespace Sehin_versión2._0.Models
         public virtual DbSet<Foto> FotoSet { get; set; }
         public virtual DbSet<TipoServicio> TipoServicioSet { get; set; }
         public virtual DbSet<WorkOrder> WorkOrderSet { get; set; }
+        public virtual DbSet<WebFile> WebFiles { get; set; }
     }
 }

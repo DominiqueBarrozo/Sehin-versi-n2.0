@@ -32,6 +32,7 @@
     <EntitySet Name="FotoSet" EntityType="Modelo.Store.FotoSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TipoServicioSet" EntityType="Modelo.Store.TipoServicioSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkOrderSet" EntityType="Modelo.Store.WorkOrderSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WebFiles" EntityType="Modelo.Store.WebFiles" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="EstablecimientosClientes" Association="Modelo.Store.EstablecimientosClientes">
       <End Role="Establecimientos" EntitySet="EstablecimientosSet" />
       <End Role="Clientes" EntitySet="ClientesSet" />
@@ -355,9 +356,11 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ruta" Type="nvarchar(max)" Nullable="false" />
     <Property Name="descripcion" Type="nvarchar(max)" Nullable="false" />
     <Property Name="WorkOrderId" Type="int" Nullable="false" />
+    <Property Name="WebImageId" Type="int" Nullable="false" />
+    <Property Name="activa" Type="bit" Nullable="false" />
+    <Property Name="nroorden" Type="int" Nullable="false" />
     <Property Name="Máquinas_Id" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="TipoServicioSet">
@@ -381,6 +384,19 @@
     <Property Name="TécnicosLegajo" Type="int" Nullable="false" />
     <Property Name="finalizada" Type="bit" Nullable="false" />
     <Property Name="fechafinalizada" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WebFiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data" Type="varbinary(max)" Nullable="true" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileExt" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FileLength" Type="int" Nullable="false" />
+    <Property Name="ContentType" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <Association Name="EstablecimientosClientes">
     <End Role="Establecimientos" Type="Modelo.Store.EstablecimientosSet" Multiplicity="*" />
@@ -765,6 +781,7 @@
             <End Role="WorkOrder" EntitySet="WorkOrderSet" />
             <End Role="Técnicos" EntitySet="TécnicosSet" />
           </AssociationSet>
+          <EntitySet Name="WebFiles" EntityType="Modelo.WebFile" />
           </EntityContainer>
         <EntityType Name="Clientes">
           <Key>
@@ -1240,11 +1257,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ruta" Type="String" Nullable="false" />
           <Property Name="descripcion" Type="String" Nullable="false" />
           <NavigationProperty Name="Máquinas" Relationship="Modelo.FotoMáquinas" FromRole="Foto" ToRole="Máquinas" />
           <NavigationProperty Name="WorkOrder" Relationship="Modelo.WorkOrderFoto" FromRole="Foto" ToRole="WorkOrder" />
           <Property Name="WorkOrderId" Type="Int32" Nullable="false" />
+          <Property Name="WebImageId" Type="Int32" Nullable="false" />
+          <Property Name="activa" Type="Boolean" Nullable="false" />
+          <Property Name="nroorden" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FotoMáquinas">
           <End Type="Modelo.Foto" Role="Foto" Multiplicity="*" />
@@ -1308,6 +1327,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WebFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileExt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FileLength" Type="Int32" Nullable="false" />
+          <Property Name="ContentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1568,9 +1600,11 @@
       <EntityTypeMapping TypeName="IsTypeOf(Modelo.Foto)">
         <MappingFragment StoreEntitySet="FotoSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="ruta" ColumnName="ruta" />
           <ScalarProperty Name="descripcion" ColumnName="descripcion" />
           <ScalarProperty Name="WorkOrderId" ColumnName="WorkOrderId" />
+          <ScalarProperty Name="WebImageId" ColumnName="WebImageId" />
+          <ScalarProperty Name="activa" ColumnName="activa" />
+          <ScalarProperty Name="nroorden" ColumnName="nroorden" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1595,6 +1629,20 @@
           <ScalarProperty Name="TécnicosLegajo" ColumnName="TécnicosLegajo" />
           <ScalarProperty Name="finalizada" ColumnName="finalizada" />
           <ScalarProperty Name="fechafinalizada" ColumnName="fechafinalizada" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WebFiles">
+      <EntityTypeMapping TypeName="IsTypeOf(Modelo.WebFile)">
+        <MappingFragment StoreEntitySet="WebFiles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileExt" ColumnName="FileExt" />
+          <ScalarProperty Name="FileLength" ColumnName="FileLength" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -1693,6 +1741,7 @@
         <AssociationConnector Association="Modelo.WorkOrderFoto" />
         <AssociationConnector Association="Modelo.WorkOrderClientes" />
         <AssociationConnector Association="Modelo.WorkOrderTécnicos" />
+        <EntityTypeShape EntityType="Modelo.WebFile" Width="1.5" PointX="9.875" PointY="21.375" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

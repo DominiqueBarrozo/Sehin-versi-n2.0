@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/28/2018 00:20:59
+-- Date Created: 01/04/2019 00:25:09
 -- Generated from EDMX file: C:\Users\marcos\Source\Repos\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
@@ -73,6 +73,15 @@ IF OBJECT_ID(N'[dbo].[FK_FotoMáquinas]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_ServicioTipoServicio]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ServicioSet] DROP CONSTRAINT [FK_ServicioTipoServicio];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkOrderFoto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_WorkOrderFoto];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkOrderClientes]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ClientesSet] DROP CONSTRAINT [FK_WorkOrderClientes];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkOrderTécnicos]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[WorkOrderSet] DROP CONSTRAINT [FK_WorkOrderTécnicos];
 GO
 
 -- --------------------------------------------------
@@ -153,6 +162,12 @@ IF OBJECT_ID(N'[dbo].[FotoSet]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[TipoServicioSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TipoServicioSet];
+GO
+IF OBJECT_ID(N'[dbo].[WorkOrderSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WorkOrderSet];
+GO
+IF OBJECT_ID(N'[dbo].[WebFiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[WebFiles];
 GO
 
 -- --------------------------------------------------
@@ -391,9 +406,11 @@ GO
 -- Creating table 'FotoSet'
 CREATE TABLE [dbo].[FotoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [ruta] nvarchar(max)  NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
     [WorkOrderId] int  NOT NULL,
+    [WebImageId] int  NOT NULL,
+    [activa] bit  NOT NULL,
+    [nroorden] int  NOT NULL,
     [Máquinas_Id] int  NULL
 );
 GO
@@ -417,6 +434,19 @@ CREATE TABLE [dbo].[WorkOrderSet] (
     [TécnicosLegajo] int  NOT NULL,
     [finalizada] bit  NOT NULL,
     [fechafinalizada] datetime  NOT NULL
+);
+GO
+
+-- Creating table 'WebFiles'
+CREATE TABLE [dbo].[WebFiles] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Data] varbinary(max)  NULL,
+    [IsActive] bit  NOT NULL,
+    [UpdateDate] datetime  NOT NULL,
+    [FileName] nvarchar(max)  NULL,
+    [FileExt] nvarchar(max)  NULL,
+    [FileLength] int  NOT NULL,
+    [ContentType] nvarchar(max)  NULL
 );
 GO
 
@@ -577,6 +607,12 @@ GO
 -- Creating primary key on [Id] in table 'WorkOrderSet'
 ALTER TABLE [dbo].[WorkOrderSet]
 ADD CONSTRAINT [PK_WorkOrderSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'WebFiles'
+ALTER TABLE [dbo].[WebFiles]
+ADD CONSTRAINT [PK_WebFiles]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

@@ -12,16 +12,15 @@ namespace Sehin_versión2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Foto
+    public partial class WebFile
     {
         public int Id { get; set; }
-        public string descripcion { get; set; }
-        public int WorkOrderId { get; set; }
-        public int WebImageId { get; set; }
-        public bool activa { get; set; }
-        public int nroorden { get; set; }
-    
-        public virtual Máquinas Máquinas { get; set; }
-        public virtual WorkOrder WorkOrder { get; set; }
+        public byte[] Data { get; set; }
+        public bool IsActive { get; set; }
+        public System.DateTime UpdateDate { get; set; }
+        public string FileName { get; set; }
+        public string FileExt { get; set; }
+        public int FileLength { get; set; }
+        public string ContentType { get; set; }
     }
 }

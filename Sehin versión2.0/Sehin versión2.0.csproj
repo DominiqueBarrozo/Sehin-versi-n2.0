@@ -214,6 +214,9 @@
     <Compile Include="Controllers\DetallePlanesFormacionsController.cs" />
     <Compile Include="Controllers\DetallePresupuestoesController.cs" />
     <Compile Include="Controllers\EstablecimientosController.cs" />
+    <Compile Include="Controllers\Fotos\DownloadFileController.cs" />
+    <Compile Include="Controllers\Fotos\GalleryAdminController.cs" />
+    <Compile Include="Controllers\Fotos\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalidadesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -330,13 +333,18 @@
     <Compile Include="Models\Técnicos.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\WebFile.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WorkOrder.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ImageEditorViewModel.cs" />
     <Compile Include="ViewModels\PresupuestoView.cs" />
     <Compile Include="ViewModels\PresupuestoViewModelSegundo.cs" />
+    <Compile Include="ViewModels\WebFileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -382,6 +390,10 @@
     <Content Include="App_Browsers\qt.browser" />
     <Content Include="libman.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.css" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.js" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.min.css" />
+    <Content Include="Scripts\fancy-box\jquery.fancybox.min.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.min.js" />
     <Content Include="Scripts\fullcalendar\gcal.js" />
@@ -634,6 +646,11 @@
     <Content Include="Views\WorkOrders\Details.cshtml" />
     <Content Include="Views\WorkOrders\Edit.cshtml" />
     <Content Include="Views\WorkOrders\Index.cshtml" />
+    <Content Include="Views\GalleryAdmin\Index.cshtml" />
+    <Content Include="Views\GalleryAdmin\Create.cshtml" />
+    <Content Include="Views\GalleryAdmin\_List.cshtml" />
+    <Content Include="Views\Gallery\Index.cshtml" />
+    <Content Include="Views\Gallery\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
