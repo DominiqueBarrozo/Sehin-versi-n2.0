@@ -651,6 +651,7 @@
     <Content Include="Views\GalleryAdmin\_List.cshtml" />
     <Content Include="Views\Gallery\Index.cshtml" />
     <Content Include="Views\Gallery\_List.cshtml" />
+    <Content Include="Views\WorkOrders\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Sehin_versión2._0.Models;
+using Sehin_versión2._0.ViewModels;
 
 namespace Sehin_versión2._0.Controllers
 {
@@ -59,6 +60,23 @@ namespace Sehin_versión2._0.Controllers
 
             ViewBag.TécnicosLegajo = new SelectList(db.TécnicosSet, "Legajo", "Nombre", workOrder.TécnicosLegajo);
             return View(workOrder);
+        }
+
+        //Esto lo agregué yo para que liste las fotos al editar la WORK ORDER
+        public ActionResult _List()
+        {
+            ModeloContainer db = new ModeloContainer();
+            var list = db.FotoSet.OrderBy(x => x.nroorden)
+                        .Select(x => new ImageList
+                        {
+                            Id = x.Id,
+                            IsActive = x.activa,
+                            OrderNo = x.nroorden,
+                            WebImageId = x.WebImageId,
+                            Title = x.descripcion
+                        }).ToList();
+
+            return PartialView(list);
         }
 
         // GET: WorkOrders/Edit/5

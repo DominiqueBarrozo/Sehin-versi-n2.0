@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>WorkOrder</h4>
         <hr />
@@ -98,6 +98,11 @@
         </div>
     </div>
 }
+
+<hr />
+<div id="ListPanel" data-url="@Url.Action("_List")">
+    @Html.Action("_List")
+</div>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

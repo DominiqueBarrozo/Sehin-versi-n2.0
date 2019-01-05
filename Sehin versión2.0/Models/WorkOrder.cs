@@ -25,15 +25,15 @@ namespace Sehin_versión2._0.Models
         public string descripcion { get; set; }
         public System.DateTime fecha { get; set; }
         public System.DateTime fechavencimiento { get; set; }
-        public short programacion { get; set; }
-        public short prioridad { get; set; }
+        public Nullable<short> programacion { get; set; }
+        public Nullable<short> prioridad { get; set; }
         public int TécnicosLegajo { get; set; }
-        public bool finalizada { get; set; }
-        public System.DateTime fechafinalizada { get; set; }
+        public Nullable<bool> finalizada { get; set; }
+        public Nullable<System.DateTime> fechafinalizada { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Foto> Foto { get; set; }
         public virtual Clientes Clientes { get; set; }
         public virtual Técnicos Técnicos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Foto> Foto { get; set; }
     }
 }

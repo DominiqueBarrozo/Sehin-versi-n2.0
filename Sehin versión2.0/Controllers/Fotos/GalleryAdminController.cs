@@ -38,6 +38,7 @@ namespace ImageGallery.Controllers
 
                     var entity = ImageEditorViewModel.GetEnityModel(model);                  
                     entity.WebImageId = fileModel.Id;
+                    entity.activa = true;
                     entity.nroorden = db.FotoSet.Count() > 0 ? db.FotoSet.Max(x=> x.nroorden) + 1 : 1;
                     db.FotoSet.Add(entity);
                     db.SaveChanges();

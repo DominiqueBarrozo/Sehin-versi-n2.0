@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 01/04/2019 00:25:09
+-- Date Created: 01/05/2019 13:20:51
 -- Generated from EDMX file: C:\Users\marcos\Source\Repos\Sehin-versi-n2.0\Sehin versión2.0\Models\Modelo.edmx
 -- --------------------------------------------------
 
@@ -68,20 +68,17 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ClientesContacto]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ContactoSet] DROP CONSTRAINT [FK_ClientesContacto];
 GO
-IF OBJECT_ID(N'[dbo].[FK_FotoMáquinas]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_FotoMáquinas];
-GO
 IF OBJECT_ID(N'[dbo].[FK_ServicioTipoServicio]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ServicioSet] DROP CONSTRAINT [FK_ServicioTipoServicio];
-GO
-IF OBJECT_ID(N'[dbo].[FK_WorkOrderFoto]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_WorkOrderFoto];
 GO
 IF OBJECT_ID(N'[dbo].[FK_WorkOrderClientes]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ClientesSet] DROP CONSTRAINT [FK_WorkOrderClientes];
 GO
 IF OBJECT_ID(N'[dbo].[FK_WorkOrderTécnicos]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[WorkOrderSet] DROP CONSTRAINT [FK_WorkOrderTécnicos];
+GO
+IF OBJECT_ID(N'[dbo].[FK_WorkOrderFoto]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FotoSet] DROP CONSTRAINT [FK_WorkOrderFoto];
 GO
 
 -- --------------------------------------------------
@@ -407,11 +404,10 @@ GO
 CREATE TABLE [dbo].[FotoSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [descripcion] nvarchar(max)  NOT NULL,
-    [WorkOrderId] int  NOT NULL,
     [WebImageId] int  NOT NULL,
     [activa] bit  NOT NULL,
     [nroorden] int  NOT NULL,
-    [Máquinas_Id] int  NULL
+    [WorkOrderId] int  NULL
 );
 GO
 
@@ -429,11 +425,11 @@ CREATE TABLE [dbo].[WorkOrderSet] (
     [descripcion] nvarchar(max)  NOT NULL,
     [fecha] datetime  NOT NULL,
     [fechavencimiento] datetime  NOT NULL,
-    [programacion] smallint  NOT NULL,
-    [prioridad] smallint  NOT NULL,
+    [programacion] smallint  NULL,
+    [prioridad] smallint  NULL,
     [TécnicosLegajo] int  NOT NULL,
-    [finalizada] bit  NOT NULL,
-    [fechafinalizada] datetime  NOT NULL
+    [finalizada] bit  NULL,
+    [fechafinalizada] datetime  NULL
 );
 GO
 
@@ -875,21 +871,6 @@ ON [dbo].[ContactoSet]
     ([ClientesId]);
 GO
 
--- Creating foreign key on [Máquinas_Id] in table 'FotoSet'
-ALTER TABLE [dbo].[FotoSet]
-ADD CONSTRAINT [FK_FotoMáquinas]
-    FOREIGN KEY ([Máquinas_Id])
-    REFERENCES [dbo].[MáquinasSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_FotoMáquinas'
-CREATE INDEX [IX_FK_FotoMáquinas]
-ON [dbo].[FotoSet]
-    ([Máquinas_Id]);
-GO
-
 -- Creating foreign key on [TipoServicio_Id] in table 'ServicioSet'
 ALTER TABLE [dbo].[ServicioSet]
 ADD CONSTRAINT [FK_ServicioTipoServicio]
@@ -903,21 +884,6 @@ GO
 CREATE INDEX [IX_FK_ServicioTipoServicio]
 ON [dbo].[ServicioSet]
     ([TipoServicio_Id]);
-GO
-
--- Creating foreign key on [WorkOrderId] in table 'FotoSet'
-ALTER TABLE [dbo].[FotoSet]
-ADD CONSTRAINT [FK_WorkOrderFoto]
-    FOREIGN KEY ([WorkOrderId])
-    REFERENCES [dbo].[WorkOrderSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_WorkOrderFoto'
-CREATE INDEX [IX_FK_WorkOrderFoto]
-ON [dbo].[FotoSet]
-    ([WorkOrderId]);
 GO
 
 -- Creating foreign key on [WorkOrder_Id] in table 'ClientesSet'
@@ -948,6 +914,21 @@ GO
 CREATE INDEX [IX_FK_WorkOrderTécnicos]
 ON [dbo].[WorkOrderSet]
     ([TécnicosLegajo]);
+GO
+
+-- Creating foreign key on [WorkOrderId] in table 'FotoSet'
+ALTER TABLE [dbo].[FotoSet]
+ADD CONSTRAINT [FK_WorkOrderFoto]
+    FOREIGN KEY ([WorkOrderId])
+    REFERENCES [dbo].[WorkOrderSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_WorkOrderFoto'
+CREATE INDEX [IX_FK_WorkOrderFoto]
+ON [dbo].[FotoSet]
+    ([WorkOrderId]);
 GO
 
 -- --------------------------------------------------
