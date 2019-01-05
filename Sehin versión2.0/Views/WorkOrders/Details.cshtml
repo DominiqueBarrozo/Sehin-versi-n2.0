@@ -83,6 +83,10 @@
         </dd>
 
     </dl>
+    <hr />
+    <div id="ListPanel" data-url="@Url.Action("_List")">
+        @Html.Action("_List")
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
