@@ -45,12 +45,9 @@
     <li>@Html.ActionLink("Condiciones de IVA", "Index", "CondicionIvas")</li>
     <li>@Html.ActionLink("Provincias", "Index", "Provincias")</li>
     <li>@Html.ActionLink("Localidades", "Index", "Localidades")</li>
-    <li>@Html.ActionLink("Servicios", "Index", "Servicios")</li>
-    <li>@Html.ActionLink("Planillas de Servicios", "ServiciosExcel", "Servicios")</li>
+    <li>@Html.ActionLink("Servicios", "ServiciosExcel", "Servicios")</li>
     <li role="separator" class="divider"></li>
-    <li>@Html.ActionLink("Presupuestos", "NuevoPresupuesto", "PresupuestoViewModel")</li>
-    <li>@Html.ActionLink("Presupuestos Segunda version", "Index", "PresupuestoHome")</li>
-    <li>@Html.ActionLink("Planilla de Presupuestos", "Index", "Presupuestoes")</li>
+    <li>@Html.ActionLink("Presupuestos", "Index", "PresupuestoHome")</li>
     <li role="separator" class="divider"></li>
 </ul>
                             </li>
@@ -61,12 +58,10 @@
                                 </button><ul class="dropdown-menu" style="background-color:orange;opacity:.9;font-size:18px">
     <li>@Html.ActionLink("Nuevo técnico", "Create", "Técnicos")</li>
     <li role="separator" class="divider"></li>
-    <li>@Html.ActionLink("Asignar orden de trabajo", "Create", "OrdenTrabajoes")</li>
-    <li>@Html.ActionLink("Work Orders", "Index", "WorkOrders")</li>
+    <li>@Html.ActionLink("Cargar orden de trabajo", "Create", "OrdenTrabajoes")</li>
     <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
-    <li>@Html.ActionLink("Listado de ordenes de trabajo", "Index", "OrdenTrabajoes")</li>
-    <li>@Html.ActionLink("Galeria de Imagenes de Ordenes de Trabajo", "Index", "Gallery")</li>
-    <li>@Html.ActionLink("Galeria Admin", "Index", "GalleryAdmin")</li>
+    <li>@Html.ActionLink("Agregar imagen a Orden de Trabajo", "Index", "GalleryAdmin")</li>
+    <li>@Html.ActionLink("Galeria de imágenes de Ordenes de Trabajo", "Index", "Gallery")</li>
 </ul>
                             </li>
                             <li>
